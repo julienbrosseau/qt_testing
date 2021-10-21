@@ -1,0 +1,9 @@
+# This are some examples of commonly ignored file patterns.
+# You should customize this list as applicable to your project.
+
+# VS Code directories
+.vscode/
+
+# Build directories
+local-build/
+qmake-build/
