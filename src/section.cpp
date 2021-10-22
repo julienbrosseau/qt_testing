@@ -1,7 +1,8 @@
 #include "section.h"
 
-/**
+/*!
  * \brief           Constructor of the class "Section"
+ *
  * \param[in]       index: Index of the section
  * \param[in]       name: Name of the section
  */
@@ -23,7 +24,7 @@ Section::Section(int index, QString name) : QWidget()
                      this, SLOT(SlotSwitchSection()));
 }
 
-/**
+/*!
  * \brief           Destructor of the class "Section"
  */
 Section::~Section(void)
@@ -31,7 +32,7 @@ Section::~Section(void)
     delete Section::button;
 }
 
-/**
+/*!
  * \brief           Slot function which ask to switch the current section with the next one.
  *                  Connected with the signal 'askToDisplaySection'.
  */

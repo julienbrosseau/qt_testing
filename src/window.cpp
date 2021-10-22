@@ -3,7 +3,7 @@
 #define WIDTH_DELTA 100
 #define HEIGHT_DELTA 100
 
-/**
+/*!
  * \brief           Constructor of the class "Window"
  */
 Window::Window(void) : QMainWindow()
@@ -47,7 +47,7 @@ Window::Window(void) : QMainWindow()
 
 }
 
-/**
+/*!
  * \brief           Destructor of the class "Window"
  */
 Window::~Window(void)
@@ -58,8 +58,9 @@ Window::~Window(void)
     delete Window::section4;
 }
 
-/**
+/*!
  * \brief           Slot to switch the displayed section
+ *
  * \param[in]       index: Index of the section to diplay
  */
 void Window::SlotDisplaySection(int index)
@@ -67,8 +68,9 @@ void Window::SlotDisplaySection(int index)
     Window::stack->setCurrentIndex(index);
 }
 
-/**
+/*!
  * \brief           Get the size of the host desktop
+ * 
  * \param[out]      width: Width of the host desktop
  * \param[out]      height: Height of the host desktop          
  */
