@@ -8,10 +8,6 @@ The goal of this project is to investigate and test possibilites of the integrat
 
 I have never used it before and I will try to make something with it.
 
-## Table of content
-
-[TOC]
-
 ## Requirements
 ### Installation of QT
 
