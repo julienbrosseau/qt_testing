@@ -40,12 +40,14 @@ find_package(Qt5 COMPONENTS Gui Core Widgets REQUIRED)
 # ==================================================================================================
 # Add include directories (for build part) if necessary
 include_directories(
-    inc
+    core/inc
+    graphical_interface/inc
 )
 
 # Add the include files with a "GLOB" to take care of MOC generation
 file(GLOB PROJECT_INCLUDE
-    "inc/*.h"
+    "core/inc/*.h"
+    "graphical_interface/inc/*.h"
 )
 
 # ==================================================================================================
@@ -53,7 +55,8 @@ file(GLOB PROJECT_INCLUDE
 # ==================================================================================================
 # Add the executable with a "GLOB" of main files
 file(GLOB PROJECT_EXECS
-    "src/*.cpp"
+    "core/src/*.cpp"
+    "graphical_interface/src/*.cpp"
 )
 
 # Add executable with the previous "GLOB"
