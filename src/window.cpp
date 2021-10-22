@@ -6,7 +6,7 @@
 /**
  * \brief           Constructor of the class "Window"
  */
-Window::Window(void) : QWidget()
+Window::Window(void) : QMainWindow()
 {
     int width;
     int height;
@@ -14,19 +14,37 @@ Window::Window(void) : QWidget()
     /* Get the size of the host desktop */
     std::tie(width, height) = Window::GetSizeOfDesktop();
 
-    /* Generate a window */
+    /* Generate the window */
     this->setFixedSize(width - WIDTH_DELTA, height - HEIGHT_DELTA);
 
-    /* Initialize the button */
-    Window::button = new QPushButton("Exit", this);
-    
-    /* Set up the button */
-    Window::button->setToolTip("Close the window");
-    Window::button->setFont(QFont("Courier", 12));
-    Window::button->setCursor(Qt::PointingHandCursor);
-    Window::button->move(60,50); /* TODO: Replace magic numbers */
+    /* Initialize the stack */
+    Window::stack = new QStackedWidget(this);
+    /* Initialize sections */
+    Window::section1 = new Section(1, "Section 1");
+    Window::section2 = new Section(2, "Section 2");
+    Window::section3 = new Section(3, "Section 3");
+    Window::section4 = new Section(4, "Section 4");
 
-    QObject::connect(button, SIGNAL(clicked()), qApp, SLOT(quit()));
+    /* Add sections to the stack */
+    Window::stack->addWidget(Window::section1);
+    Window::stack->addWidget(Window::section2);
+    Window::stack->addWidget(Window::section3);
+    Window::stack->addWidget(Window::section4);
+
+    /* Set up the section to display */
+    this->setCentralWidget(Window::stack);
+    Window::stack->setCurrentIndex(0);
+
+    /* Connect each section to switch the current dispalyed section */
+    QObject::connect(Window::section1, SIGNAL(SignalSwitchSection(int)),
+                     this, SLOT(SlotDisplaySection(int)));
+    QObject::connect(Window::section2, SIGNAL(SignalSwitchSection(int)),
+                     this, SLOT(SlotDisplaySection(int)));
+    QObject::connect(Window::section3, SIGNAL(SignalSwitchSection(int)),
+                     this, SLOT(SlotDisplaySection(int)));
+    QObject::connect(Window::section4, SIGNAL(SignalSwitchSection(int)),
+                     this, SLOT(SlotDisplaySection(int)));
+
 }
 
 /**
@@ -34,7 +52,19 @@ Window::Window(void) : QWidget()
  */
 Window::~Window(void)
 {
-    delete Window::button;
+    delete Window::section1;
+    delete Window::section2;
+    delete Window::section3;
+    delete Window::section4;
+}
+
+/**
+ * \brief           Slot to switch the displayed section
+ * \param[in]       index: Index of the section to diplay
+ */
+void Window::SlotDisplaySection(int index)
+{
+    Window::stack->setCurrentIndex(index);
 }
 
 /**
