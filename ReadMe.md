@@ -1,15 +1,50 @@
-# Installation of QT
+# Investigate & Test possibilities of the integration of QT library
 
-sudo apt install qt5-default
+Version: v1.0
 
-# Build with QT
+## Abstract
 
-qmake -project
+The goal of this project is to investigate and test possibilites of the integration of QT in a project.
 
-qmake -makefile
+I have never used it before and I will try to make something with it.
+
+## Table of content
+
+[TOC]
+
+## Requirements
+### Installation of QT
+
+```bash
+$ sudo apt install qt5-default
+```
+
+### Build with QT
+
+```bash
+$ qmake -project
+$ qmake -makefile
+```
 
 In the generated makefile add 
 - *-lQt5Widgets* on the line with the keyword *LIBS*
 - *-isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets* on the line with the keyword *INCPATH*
 
-make
+```bash
+$ make
+```
+
+### Installation of CMake
+
+```bash
+$ sudo apt install cmake
+```
+
+### Build with CMake
+
+```bash
+$ mkdir local-build
+$ cd local-build
+$ cmake ..
+$ make
+```
