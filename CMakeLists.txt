@@ -43,6 +43,11 @@ include_directories(
     inc
 )
 
+# Add the include files with a "GLOB" to take care of MOC generation
+file(GLOB PROJECT_INCLUDE
+    "inc/*.h"
+)
+
 # ==================================================================================================
 # Executable settings of CMakeLists
 # ==================================================================================================
@@ -52,7 +57,7 @@ file(GLOB PROJECT_EXECS
 )
 
 # Add executable with the previous "GLOB"
-add_executable(PROJECT_main ${PROJECT_EXECS})
+add_executable(PROJECT_main ${PROJECT_EXECS} ${PROJECT_INCLUDE})
 
 # Link librairies (local ad external) to the executable
 target_link_libraries(PROJECT_main Qt5::Gui Qt5::Core Qt5::Widgets)
