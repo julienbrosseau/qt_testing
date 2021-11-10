@@ -9,6 +9,10 @@ The goal of this project is to investigate and test possibilites of the integrat
 I have never used it before and I will try to make something with it.
 
 ## Requirements
+
+- CMake
+- QT
+
 ### Installation of QT
 
 ```bash
