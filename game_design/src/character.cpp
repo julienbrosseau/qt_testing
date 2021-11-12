@@ -8,11 +8,11 @@ Character::Character(void)
     this->maxHeart = 100;
     this->nbHeart = 100;
     this->nbMana = 100;
-    this->armorHead = new Equipment(NOTHING);
-    this->armorChest = new Equipment(ARMOR_CHEST);
-    this->armorLegs = new Equipment(NOTHING);
-    this->weapon = new Equipment(WEAPON);
-    this->inventory = new Inventory();
+    this->pArmorHead = new Equipment(NOTHING);
+    this->pArmorChest = new Equipment(ARMOR_CHEST);
+    this->pArmorLegs = new Equipment(NOTHING);
+    this->pWeapon = new Equipment(WEAPON);
+    this->pInventory = new Inventory();
 }
 
 /*!
@@ -20,11 +20,11 @@ Character::Character(void)
  */
 Character::~Character(void)
 {
-    delete(this->armorHead);
-    delete(this->armorChest);
-    delete(this->armorLegs);
-    delete(this->weapon);
-    delete(this->inventory);
+    delete(this->pArmorHead);
+    delete(this->pArmorChest);
+    delete(this->pArmorLegs);
+    delete(this->pWeapon);
+    delete(this->pInventory);
 }
 
 /*!
@@ -44,7 +44,7 @@ void Character::GetDamages(int nbDamage)
  */
 void Character::SetAttack(Character &target)
 {
-    target.GetDamages(this->weapon->damage);
+    target.GetDamages(this->pWeapon->damage);
 }
 
 /*!
@@ -68,10 +68,10 @@ void Character::GetHealing(int nbHeart)
  * \param[in]       critic: Critical strike of the head armor
  * \param[in]       haste: Haste bonus of the head armor
  */
-void Character::ChangeArmorHead(std::string name, int defense, int strength, int intellect,
+void Character::ChangeArmorHead(QString name, int defense, int strength, int intellect,
                                 int agility, int critic, int haste)
 {
-    this->armorHead->Change(ARMOR_HEAD, name, 0, defense,
+    this->pArmorHead->Change(ARMOR_HEAD, name, 0, defense,
                             strength, intellect, agility, critic, haste);
 }
 
@@ -86,10 +86,10 @@ void Character::ChangeArmorHead(std::string name, int defense, int strength, int
  * \param[in]       critic: Critical strike of the chest armor
  * \param[in]       haste: Haste bonus of the chest armor
  */
-void Character::ChangeArmorChest(std::string name, int defense, int strength, int intellect,
+void Character::ChangeArmorChest(QString name, int defense, int strength, int intellect,
                                 int agility, int critic, int haste)
 {
-    this->armorChest->Change(ARMOR_CHEST, name, 0, defense,
+    this->pArmorChest->Change(ARMOR_CHEST, name, 0, defense,
                             strength, intellect, agility, critic, haste);
 }
 
@@ -104,10 +104,10 @@ void Character::ChangeArmorChest(std::string name, int defense, int strength, in
  * \param[in]       critic: Critical strike of the legs armor
  * \param[in]       haste: Haste bonus of the legs armor
  */
-void Character::ChangeArmorLegs(std::string name, int defense, int strength, int intellect,
+void Character::ChangeArmorLegs(QString name, int defense, int strength, int intellect,
                                 int agility, int critic, int haste)
 {
-    this->armorLegs->Change(ARMOR_LEGS, name, 0, defense,
+    this->pArmorLegs->Change(ARMOR_LEGS, name, 0, defense,
                             strength, intellect, agility, critic, haste);
 }
 
@@ -122,10 +122,10 @@ void Character::ChangeArmorLegs(std::string name, int defense, int strength, int
  * \param[in]       critic: Critical strike bonus of the weapon
  * \param[in]       haste: Haste bonus of the weapon
  */
-void Character::ChangeWeapon(std::string name, int damage, int strength, int intellect,
+void Character::ChangeWeapon(QString name, int damage, int strength, int intellect,
                              int agility, int critic, int haste)
 {
-    this->weapon->Change(WEAPON, name, damage, 0, strength, intellect, agility, critic, haste);
+    this->pWeapon->Change(WEAPON, name, damage, 0, strength, intellect, agility, critic, haste);
 }
 
 /*!
@@ -147,8 +147,8 @@ void Character::Print() const
 {
     std::cout << "Vie : " << this->nbHeart << std::endl;
     std::cout << "Mana : " << this->nbMana << std::endl;
-    this->armorHead->Print();
-    this->armorChest->Print();
-    this->armorLegs->Print();
-    this->weapon->Print();
+    this->pArmorHead->Print();
+    this->pArmorChest->Print();
+    this->pArmorLegs->Print();
+    this->pWeapon->Print();
 }

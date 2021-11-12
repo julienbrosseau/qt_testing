@@ -22,7 +22,7 @@ Inventory::Inventory()
  * \param[in]       critic: Define the critical strike bonus of the equipment (default value: 0)
  * \param[in]       haste: Define the haste bonus of the equipment (default value: 0)
  */
-void Inventory::AddEquipment(equipmentSlot_t xSlot, std::string name, int damage, int defence,
+void Inventory::AddEquipment(equipmentSlot_t xSlot, QString name, int damage, int defence,
                              int strength, int intellect, int agility, int critic, int haste)
 {
     Equipment newEquipment = Equipment(xSlot);
@@ -38,7 +38,7 @@ void Inventory::AddEquipment(equipmentSlot_t xSlot, std::string name, int damage
  * \param[in]       regenHealth: Regen value of health
  * \param[in]       regenMana: Regen value of mana
  */
-void Inventory::AddConsumable(std::string name, int regenHealth, int regenMana)
+void Inventory::AddConsumable(QString name, int regenHealth, int regenMana)
 {
     Consumable newConsumable = Consumable(name, regenHealth, regenMana);
 
@@ -50,7 +50,7 @@ void Inventory::AddConsumable(std::string name, int regenHealth, int regenMana)
  * 
  * \param[in]       name: Name of the tradeskill item
  */
-void Inventory::AddTradeskill(std::string name)
+void Inventory::AddTradeskill(QString name)
 {
     Tradeskill newTradeskill = Tradeskill(name);
 
@@ -62,7 +62,7 @@ void Inventory::AddTradeskill(std::string name)
  * 
  * \param[in]       name: Name of the item
  */
-void Inventory::RemoveEquipment(std::string name)
+void Inventory::RemoveEquipment(QString name)
 {
     /* Get the index of the item to erase */
     int index = Inventory::getIndex(EQUIPMENT, name);
@@ -75,7 +75,7 @@ void Inventory::RemoveEquipment(std::string name)
  * 
  * \param[in]       name: Name of the item
  */
-void Inventory::RemoveConsumable(std::string name)
+void Inventory::RemoveConsumable(QString name)
 {
     /* Get the index of the item to erase */
     int index = Inventory::getIndex(CONSUMABLE, name);
@@ -88,7 +88,7 @@ void Inventory::RemoveConsumable(std::string name)
  * 
  * \param[in]       name: Name of the item
  */
-void Inventory::RemoveTradeskill(std::string name)
+void Inventory::RemoveTradeskill(QString name)
 {
     /* Get the index of the item to erase */
     int index = Inventory::getIndex(TRADESKILL, name);
@@ -104,7 +104,7 @@ void Inventory::RemoveTradeskill(std::string name)
  * \param[in]       name: Name of the item
  * \retval          Return the index of the item in the vector
  */
-int Inventory::getIndex(itemType_t xType, std::string name) const
+int Inventory::getIndex(itemType_t xType, QString name) const
 {
     int index = INT_MAX;
     int iter;

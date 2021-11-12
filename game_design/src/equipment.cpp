@@ -68,7 +68,7 @@ Equipment::Equipment(equipmentSlot_t xSlot)
  * \param[in]       critic: define the critical strike bonus of the equipment (default value: 0)
  * \param[in]       haste: define the haste bonus of the equipment (default value: 0)
  */
-void Equipment::Change(equipmentSlot_t xSlot, std::string name, int damage, int defence,
+void Equipment::Change(equipmentSlot_t xSlot, QString name, int damage, int defence,
                        int strength, int intellect, int agility, int critic, int haste)
 {
     /* Set the description of the equipment */
@@ -93,11 +93,11 @@ void Equipment::Change(equipmentSlot_t xSlot, std::string name, int damage, int 
 void Equipment::Print() const
 {
     if (WEAPON == this->xSlot) {
-        std::cout << "Arme : " << this->name << " (Dégats : " << this->damage << ")"
+        std::cout << "Arme : " << this->name.toStdString() << " (Dégats : " << this->damage << ")"
             << std::endl;
     
     } else {
-        std::cout << "Armure : " << this->name << " (Défence : " << this->defense << ")"
+        std::cout << "Armure : " << this->name.toStdString() << " (Défence : " << this->defense << ")"
             << std::endl;
 
     }

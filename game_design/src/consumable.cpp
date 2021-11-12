@@ -7,7 +7,7 @@
  * \param[in]       regenHealth: Regen value of health
  * \param[in]       regenMana: Regen value of mana
  */
-Consumable::Consumable(std::string name, int regenHealth, int regenMana)
+Consumable::Consumable(QString name, int regenHealth, int regenMana)
 {
     this->name = name;
     this->regenHealth = regenHealth;
@@ -19,6 +19,6 @@ Consumable::Consumable(std::string name, int regenHealth, int regenMana)
  */
 void Consumable::Print(void) const
 {
-    std::cout << "Consomable : " << this->name << " (Regain de vie : " << this->regenHealth <<
+    std::cout << "Consomable : " << this->name.toStdString() << " (Regain de vie : " << this->regenHealth <<
         " | Regain de mana : " << this->regenMana << std::endl;
 }

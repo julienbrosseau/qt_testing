@@ -2,18 +2,18 @@
 #define TRADESKILL_H
 
 #include <iostream>
-#include <string>
+#include <QtWidgets>
 
 class Tradeskill
 {
 public:
     /* Constructor */
-    Tradeskill(std::string name);
+    Tradeskill(QString name);
 
     /* Public function */
     void Print(void) const;
 
-    std::string name;
+    QString name;
 
 };
 
