@@ -2,7 +2,7 @@
 #define INVENTORY_H
 
 #include <iostream>
-#include <QtWidgets>
+#include <string>
 #include <vector>
 
 #include "equipment.h"
@@ -29,13 +29,13 @@ public:
     Inventory();
 
     /* Public functions */
-    void AddEquipment(equipmentSlot_t xSlot, QString name, int damage, int defence,
+    void AddEquipment(equipmentSlot_t xSlot, std::string name, int damage, int defence,
                       int strength=0, int intellect=0, int agility=0, int critic=0, int haste=0);
-    void AddConsumable(QString name, int regenHealth, int regenMana);
-    void AddTradeskill(QString name);
-    void RemoveEquipment(QString name);
-    void RemoveConsumable(QString name);
-    void RemoveTradeskill(QString name);
+    void AddConsumable(std::string name, int regenHealth, int regenMana);
+    void AddTradeskill(std::string name);
+    void RemoveEquipment(std::string name);
+    void RemoveConsumable(std::string name);
+    void RemoveTradeskill(std::string name);
 
     void Print(void) const;
 
@@ -44,7 +44,7 @@ public:
     std::vector<Tradeskill> axTraderskills;
 
 private:
-    int getIndex(itemType_t xType, QString name) const;
+    int getIndex(itemType_t xType, std::string name) const;
  
 };
 

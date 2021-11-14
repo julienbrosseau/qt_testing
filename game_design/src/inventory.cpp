@@ -22,13 +22,13 @@ Inventory::Inventory()
  * \param[in]       critic: Define the critical strike bonus of the equipment (default value: 0)
  * \param[in]       haste: Define the haste bonus of the equipment (default value: 0)
  */
-void Inventory::AddEquipment(equipmentSlot_t xSlot, QString name, int damage, int defence,
+void Inventory::AddEquipment(equipmentSlot_t xSlot, std::string name, int damage, int defence,
                              int strength, int intellect, int agility, int critic, int haste)
 {
     Equipment newEquipment = Equipment(xSlot);
     newEquipment.Change(xSlot, name, damage, defence, strength, intellect, agility, critic, haste);
 
-    this->axEquipments.push_back(newEquipment);
+    Inventory::axEquipments.push_back(newEquipment);
 }
 
 /*!
@@ -38,11 +38,11 @@ void Inventory::AddEquipment(equipmentSlot_t xSlot, QString name, int damage, in
  * \param[in]       regenHealth: Regen value of health
  * \param[in]       regenMana: Regen value of mana
  */
-void Inventory::AddConsumable(QString name, int regenHealth, int regenMana)
+void Inventory::AddConsumable(std::string name, int regenHealth, int regenMana)
 {
     Consumable newConsumable = Consumable(name, regenHealth, regenMana);
 
-    this->axConsumables.push_back(newConsumable);
+    Inventory::axConsumables.push_back(newConsumable);
 }
 
 /*!
@@ -50,11 +50,11 @@ void Inventory::AddConsumable(QString name, int regenHealth, int regenMana)
  * 
  * \param[in]       name: Name of the tradeskill item
  */
-void Inventory::AddTradeskill(QString name)
+void Inventory::AddTradeskill(std::string name)
 {
     Tradeskill newTradeskill = Tradeskill(name);
 
-    this->axTraderskills.push_back(newTradeskill);
+    Inventory::axTraderskills.push_back(newTradeskill);
 }
 
 /*!
@@ -62,12 +62,12 @@ void Inventory::AddTradeskill(QString name)
  * 
  * \param[in]       name: Name of the item
  */
-void Inventory::RemoveEquipment(QString name)
+void Inventory::RemoveEquipment(std::string name)
 {
     /* Get the index of the item to erase */
     int index = Inventory::getIndex(EQUIPMENT, name);
     /* Erase the desired item */
-    this->axEquipments.erase(this->axEquipments.begin() + index);
+    Inventory::axEquipments.erase(Inventory::axEquipments.begin() + index);
 }
 
 /*!
@@ -75,12 +75,12 @@ void Inventory::RemoveEquipment(QString name)
  * 
  * \param[in]       name: Name of the item
  */
-void Inventory::RemoveConsumable(QString name)
+void Inventory::RemoveConsumable(std::string name)
 {
     /* Get the index of the item to erase */
     int index = Inventory::getIndex(CONSUMABLE, name);
     /* Erase the desired item */
-    this->axConsumables.erase(this->axConsumables.begin() + index);
+    Inventory::axConsumables.erase(Inventory::axConsumables.begin() + index);
 }
 
 /*!
@@ -88,12 +88,12 @@ void Inventory::RemoveConsumable(QString name)
  * 
  * \param[in]       name: Name of the item
  */
-void Inventory::RemoveTradeskill(QString name)
+void Inventory::RemoveTradeskill(std::string name)
 {
     /* Get the index of the item to erase */
     int index = Inventory::getIndex(TRADESKILL, name);
     /* Erase the desired item */
-    this->axTraderskills.erase(this->axTraderskills.begin() + index);
+    Inventory::axTraderskills.erase(Inventory::axTraderskills.begin() + index);
 }
 
 /*!
@@ -104,7 +104,7 @@ void Inventory::RemoveTradeskill(QString name)
  * \param[in]       name: Name of the item
  * \retval          Return the index of the item in the vector
  */
-int Inventory::getIndex(itemType_t xType, QString name) const
+int Inventory::getIndex(itemType_t xType, std::string name) const
 {
     int index = INT_MAX;
     int iter;
@@ -112,8 +112,8 @@ int Inventory::getIndex(itemType_t xType, QString name) const
     switch (xType)
     {
     case EQUIPMENT:
-        for (iter = 0; iter != this->axEquipments.size(); iter++) {
-            if (name == this->axEquipments[iter].name) {
+        for (iter = 0; iter != Inventory::axEquipments.size(); iter++) {
+            if (name == Inventory::axEquipments[iter].name) {
                 index = iter;
                 break;
             }
@@ -121,8 +121,8 @@ int Inventory::getIndex(itemType_t xType, QString name) const
         break;
     
     case CONSUMABLE:
-        for (iter = 0; iter != this->axConsumables.size(); iter++) {
-            if (name == this->axConsumables[iter].name) {
+        for (iter = 0; iter != Inventory::axConsumables.size(); iter++) {
+            if (name == Inventory::axConsumables[iter].name) {
                 index = iter;
                 break;
             }
@@ -130,8 +130,8 @@ int Inventory::getIndex(itemType_t xType, QString name) const
         break;
     
     case TRADESKILL:
-        for (iter = 0; iter != this->axTraderskills.size(); iter++) {
-            if (name == this->axTraderskills[iter].name) {
+        for (iter = 0; iter != Inventory::axTraderskills.size(); iter++) {
+            if (name == Inventory::axTraderskills[iter].name) {
                 index = iter;
                 break;
             }

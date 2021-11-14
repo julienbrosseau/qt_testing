@@ -5,14 +5,14 @@
  */
 Character::Character(void)
 {
-    this->maxHeart = 100;
-    this->nbHeart = 100;
-    this->nbMana = 100;
-    this->pArmorHead = new Equipment(NOTHING);
-    this->pArmorChest = new Equipment(ARMOR_CHEST);
-    this->pArmorLegs = new Equipment(NOTHING);
-    this->pWeapon = new Equipment(WEAPON);
-    this->pInventory = new Inventory();
+    Character::maxHeart = 100;
+    Character::nbHeart = 100;
+    Character::nbMana = 100;
+    Character::pArmorHead = new Equipment(NOTHING);
+    Character::pArmorChest = new Equipment(ARMOR_CHEST);
+    Character::pArmorLegs = new Equipment(NOTHING);
+    Character::pWeapon = new Equipment(WEAPON);
+    Character::pInventory = new Inventory();
 }
 
 /*!
@@ -20,11 +20,11 @@ Character::Character(void)
  */
 Character::~Character(void)
 {
-    delete(this->pArmorHead);
-    delete(this->pArmorChest);
-    delete(this->pArmorLegs);
-    delete(this->pWeapon);
-    delete(this->pInventory);
+    delete(Character::pArmorHead);
+    delete(Character::pArmorChest);
+    delete(Character::pArmorLegs);
+    delete(Character::pWeapon);
+    delete(Character::pInventory);
 }
 
 /*!
@@ -34,7 +34,7 @@ Character::~Character(void)
  */
 void Character::GetDamages(int nbDamage)
 {
-    this->nbHeart = std::max(0, this->nbHeart - nbDamage);
+    Character::nbHeart = std::max(0, Character::nbHeart - nbDamage);
 }
 
 /*!
@@ -44,7 +44,7 @@ void Character::GetDamages(int nbDamage)
  */
 void Character::SetAttack(Character &target)
 {
-    target.GetDamages(this->pWeapon->damage);
+    target.GetDamages(Character::pWeapon->damage);
 }
 
 /*!
@@ -54,7 +54,7 @@ void Character::SetAttack(Character &target)
  */
 void Character::GetHealing(int nbHeart)
 {
-    this->nbHeart = std::min(this->maxHeart, this->nbHeart + nbHeart);
+    Character::nbHeart = std::min(Character::maxHeart, Character::nbHeart + nbHeart);
 }
 
 /*!
@@ -68,11 +68,11 @@ void Character::GetHealing(int nbHeart)
  * \param[in]       critic: Critical strike of the head armor
  * \param[in]       haste: Haste bonus of the head armor
  */
-void Character::ChangeArmorHead(QString name, int defense, int strength, int intellect,
+void Character::ChangeArmorHead(std::string name, int defense, int strength, int intellect,
                                 int agility, int critic, int haste)
 {
-    this->pArmorHead->Change(ARMOR_HEAD, name, 0, defense,
-                            strength, intellect, agility, critic, haste);
+    Character::pArmorHead->Change(ARMOR_HEAD, name, 0, defense,
+                                  strength, intellect, agility, critic, haste);
 }
 
 /*!
@@ -86,11 +86,11 @@ void Character::ChangeArmorHead(QString name, int defense, int strength, int int
  * \param[in]       critic: Critical strike of the chest armor
  * \param[in]       haste: Haste bonus of the chest armor
  */
-void Character::ChangeArmorChest(QString name, int defense, int strength, int intellect,
+void Character::ChangeArmorChest(std::string name, int defense, int strength, int intellect,
                                 int agility, int critic, int haste)
 {
-    this->pArmorChest->Change(ARMOR_CHEST, name, 0, defense,
-                            strength, intellect, agility, critic, haste);
+    Character::pArmorChest->Change(ARMOR_CHEST, name, 0, defense,
+                                   strength, intellect, agility, critic, haste);
 }
 
 /*!
@@ -104,11 +104,11 @@ void Character::ChangeArmorChest(QString name, int defense, int strength, int in
  * \param[in]       critic: Critical strike of the legs armor
  * \param[in]       haste: Haste bonus of the legs armor
  */
-void Character::ChangeArmorLegs(QString name, int defense, int strength, int intellect,
+void Character::ChangeArmorLegs(std::string name, int defense, int strength, int intellect,
                                 int agility, int critic, int haste)
 {
-    this->pArmorLegs->Change(ARMOR_LEGS, name, 0, defense,
-                            strength, intellect, agility, critic, haste);
+    Character::pArmorLegs->Change(ARMOR_LEGS, name, 0, defense,
+                                  strength, intellect, agility, critic, haste);
 }
 
 /*!
@@ -122,10 +122,11 @@ void Character::ChangeArmorLegs(QString name, int defense, int strength, int int
  * \param[in]       critic: Critical strike bonus of the weapon
  * \param[in]       haste: Haste bonus of the weapon
  */
-void Character::ChangeWeapon(QString name, int damage, int strength, int intellect,
+void Character::ChangeWeapon(std::string name, int damage, int strength, int intellect,
                              int agility, int critic, int haste)
 {
-    this->pWeapon->Change(WEAPON, name, damage, 0, strength, intellect, agility, critic, haste);
+    Character::pWeapon->Change(WEAPON, name, damage, 0,
+                               strength, intellect, agility, critic, haste);
 }
 
 /*!
@@ -145,10 +146,10 @@ bool Character::IsAlive(void) const
  */
 void Character::Print() const
 {
-    std::cout << "Vie : " << this->nbHeart << std::endl;
-    std::cout << "Mana : " << this->nbMana << std::endl;
-    this->pArmorHead->Print();
-    this->pArmorChest->Print();
-    this->pArmorLegs->Print();
-    this->pWeapon->Print();
+    std::cout << "Vie : " << Character::nbHeart << std::endl;
+    std::cout << "Mana : " << Character::nbMana << std::endl;
+    Character::pArmorHead->Print();
+    Character::pArmorChest->Print();
+    Character::pArmorLegs->Print();
+    Character::pWeapon->Print();
 }

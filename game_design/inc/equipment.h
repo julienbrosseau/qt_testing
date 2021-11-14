@@ -2,7 +2,7 @@
 #define EQUIPMENT_H
 
 #include <iostream>
-#include <QtWidgets>
+#include <string>
 
 /*!
  * \brief           Enumerate of equipement slot
@@ -26,13 +26,13 @@ public:
     Equipment(equipmentSlot_t xSlot);
 
     /* Public functions */
-    void Change(equipmentSlot_t xSlot, QString name, int damage, int defence, int strength=0,
+    void Change(equipmentSlot_t xSlot, std::string name, int damage, int defence, int strength=0,
                 int intellect=0, int agility=0, int critic=0, int haste=0);
     void Print(void) const;
 
     /* Public variables */
     equipmentSlot_t xSlot;
-    QString name;
+    std::string name;
     int damage;
     int defense;
     int strength;

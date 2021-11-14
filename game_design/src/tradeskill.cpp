@@ -5,9 +5,9 @@
  * 
  * \param[in]       name: Name of the tradeskill item
  */
-Tradeskill::Tradeskill(QString name)
+Tradeskill::Tradeskill(std::string name)
 {
-    this->name = name;
+    Tradeskill::name = name;
 }
 
 /*!
@@ -15,5 +15,5 @@ Tradeskill::Tradeskill(QString name)
  */
 void Tradeskill::Print(void) const
 {
-    std::cout << "Objet d'artisanat : " << this->name.toStdString() << std::endl;
+    std::cout << "Objet d'artisanat : " << Tradeskill::name << std::endl;
 }

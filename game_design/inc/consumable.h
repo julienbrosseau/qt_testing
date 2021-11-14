@@ -2,7 +2,7 @@
 #define CONSUMABLE_H
 
 #include <iostream>
-#include <QtWidgets>
+#include <string>
 
 /*!
  * \brief           Class 'Consumable'
@@ -11,13 +11,13 @@ class Consumable
 {
 public:
     /* Constructor */
-    Consumable(QString name, int regenHealth, int regenMana);
+    Consumable(std::string name, int regenHealth, int regenMana);
 
     /* Public function */
     void Print(void) const;
 
     /* Public variables */
-    QString name;
+    std::string name;
     int regenHealth;
     int regenMana;
 

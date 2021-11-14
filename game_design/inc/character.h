@@ -20,13 +20,13 @@ public:
     void GetDamages(int nbDamage);
     void SetAttack(Character &target);
     void GetHealing(int nbHeart);
-    void ChangeArmorHead(QString name, int defense, int strength, int intellect, int agility,
+    void ChangeArmorHead(std::string name, int defense, int strength, int intellect, int agility,
                               int critic, int haste);
-    void ChangeArmorChest(QString name, int defense, int strength, int intellect, int agility,
+    void ChangeArmorChest(std::string name, int defense, int strength, int intellect, int agility,
                               int critic, int haste);
-    void ChangeArmorLegs(QString name, int defense, int strength, int intellect, int agility,
+    void ChangeArmorLegs(std::string name, int defense, int strength, int intellect, int agility,
                               int critic, int haste);
-    void ChangeWeapon(QString name, int damage, int strength, int intellect, int agility,
+    void ChangeWeapon(std::string name, int damage, int strength, int intellect, int agility,
                               int critic, int haste);
     bool IsAlive(void) const;
     void Print(void) const;
