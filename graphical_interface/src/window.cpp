@@ -20,22 +20,28 @@ Window::Window(void) : QMainWindow()
     /* Initialize the stack */
     Window::stack = new QStackedWidget(this);
     /* Initialize sections */
+    Window::pStartMenu = new StartMenu(0);
     Window::section1 = new Section(1, "Section 1");
     Window::section2 = new Section(2, "Section 2");
     Window::section3 = new Section(3, "Section 3");
     Window::section4 = new Section(4, "Section 4");
+    Window::pCharacterInterface = new CharacterInterface(5);
 
     /* Add sections to the stack */
+    Window::stack->addWidget(Window::pStartMenu);
     Window::stack->addWidget(Window::section1);
     Window::stack->addWidget(Window::section2);
     Window::stack->addWidget(Window::section3);
     Window::stack->addWidget(Window::section4);
+    Window::stack->addWidget(Window::pCharacterInterface);
 
     /* Set up the section to display */
     this->setCentralWidget(Window::stack);
     Window::stack->setCurrentIndex(0);
 
     /* Connect each section to switch the current dispalyed section */
+    QObject::connect(Window::pStartMenu, SIGNAL(SignalEnterInGame(int)),
+                     this, SLOT(SlotDisplaySection(int)));
     QObject::connect(Window::section1, SIGNAL(SignalSwitchSection(int)),
                      this, SLOT(SlotDisplaySection(int)));
     QObject::connect(Window::section2, SIGNAL(SignalSwitchSection(int)),
@@ -44,7 +50,15 @@ Window::Window(void) : QMainWindow()
                      this, SLOT(SlotDisplaySection(int)));
     QObject::connect(Window::section4, SIGNAL(SignalSwitchSection(int)),
                      this, SLOT(SlotDisplaySection(int)));
-
+    QObject::connect(Window::pCharacterInterface, SIGNAL(SignalExitInterface(int)),
+                     this, SLOT(SlotDisplaySection(int)));
+    
+    this->setStyleSheet(
+        "QWidget {"
+            "border: 1px solid black;"
+            "color: red"
+        "}"
+    );
 }
 
 /*!
@@ -56,6 +70,7 @@ Window::~Window(void)
     delete Window::section2;
     delete Window::section3;
     delete Window::section4;
+    delete Window::pCharacterInterface;
 }
 
 /*!

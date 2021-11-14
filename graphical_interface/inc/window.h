@@ -4,9 +4,12 @@
 #include <iostream>
 #include <tuple>
 #include <QtWidgets>
-#include "section.h"
 
-class Window : public QMainWindow //QWidget
+#include "section.h"
+#include "start_menu.h"
+#include "character_interface.h"
+
+class Window : public QMainWindow
 {
 Q_OBJECT
 
@@ -24,10 +27,15 @@ private:
 
     /* Private variables */
     QStackedWidget *stack;
+
+public:
+    /* Public variables */
+    StartMenu *pStartMenu;
     Section *section1;
     Section *section2;
     Section *section3;
     Section *section4;
+    CharacterInterface *pCharacterInterface;
 };
 
 #endif /* WINDOW_H */
