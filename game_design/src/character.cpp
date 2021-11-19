@@ -13,6 +13,14 @@ Character::Character(void)
     Character::pArmorLegs = new Equipment(NOTHING);
     Character::pWeapon = new Equipment(WEAPON);
     Character::pInventory = new Inventory();
+    Character::damage = Character::pWeapon->damage;
+    Character::defense = Character::pArmorHead->defense + Character::pArmorChest->defense +
+                         Character::pArmorLegs->defense;
+    Character::strength = 0;
+    Character::intellect = 0;
+    Character::agility = 0;
+    Character::critic = 0;
+    Character::haste = 0;
 }
 
 /*!
@@ -71,8 +79,15 @@ void Character::GetHealing(int nbHeart)
 void Character::ChangeArmorHead(std::string name, int defense, int strength, int intellect,
                                 int agility, int critic, int haste)
 {
+    /* Store the old head armor */
+    Equipment *pOldArmorHead = Character::pArmorHead;
+
+    /* Change the old head armor by the new one */
     Character::pArmorHead->Change(ARMOR_HEAD, name, 0, defense,
                                   strength, intellect, agility, critic, haste);
+
+    /* Update caracteristics according to both head armors */
+    Character::UpdateCarac(pOldArmorHead, Character::pArmorHead);
 }
 
 /*!
@@ -89,8 +104,15 @@ void Character::ChangeArmorHead(std::string name, int defense, int strength, int
 void Character::ChangeArmorChest(std::string name, int defense, int strength, int intellect,
                                 int agility, int critic, int haste)
 {
+    /* Store the old chest armor */
+    Equipment *pOldArmorChest = Character::pArmorChest;
+
+    /* Change the old chest armor by the new one */
     Character::pArmorChest->Change(ARMOR_CHEST, name, 0, defense,
                                    strength, intellect, agility, critic, haste);
+    
+    /* Update caracteristics according to both chest armors */
+    Character::UpdateCarac(pOldArmorChest, Character::pArmorChest);
 }
 
 /*!
@@ -107,8 +129,15 @@ void Character::ChangeArmorChest(std::string name, int defense, int strength, in
 void Character::ChangeArmorLegs(std::string name, int defense, int strength, int intellect,
                                 int agility, int critic, int haste)
 {
+    /* Store the old legs armor */
+    Equipment *pOldArmorLegs = Character::pArmorLegs;
+
+    /* Change the old legs armor by the new one */
     Character::pArmorLegs->Change(ARMOR_LEGS, name, 0, defense,
                                   strength, intellect, agility, critic, haste);
+    
+    /* Update caracteristics according to both legs armors */
+    Character::UpdateCarac(pOldArmorLegs, Character::pArmorLegs);
 }
 
 /*!
@@ -124,9 +153,33 @@ void Character::ChangeArmorLegs(std::string name, int defense, int strength, int
  */
 void Character::ChangeWeapon(std::string name, int damage, int strength, int intellect,
                              int agility, int critic, int haste)
-{
+{   
+    /* Store the old weapon */
+    Equipment *pOldWeapon = Character::pWeapon;
+
+    /* Change the old weapon by the new one */
     Character::pWeapon->Change(WEAPON, name, damage, 0,
                                strength, intellect, agility, critic, haste);
+
+    /* Update caracteristics according to both weapons */
+    Character::UpdateCarac(pOldWeapon, Character::pWeapon);
+}
+
+/*!
+ * \brief           Update caracteristics according to the old equipment and the new one
+ * 
+ * \param[in]       pOldEquipment: Old equipment
+ * \param[in]       pNewEquipment: New equipment
+ */
+void Character::UpdateCarac(Equipment *pOldEquipment, Equipment *pNewEquipment)
+{
+    Character::damage += pNewEquipment->damage - pOldEquipment->damage;
+    Character::defense += pNewEquipment->defense - pOldEquipment->defense;
+    Character::strength += pNewEquipment->strength - pOldEquipment->strength;
+    Character::intellect += pNewEquipment->intellect - pOldEquipment->intellect;
+    Character::agility += pNewEquipment->agility - pOldEquipment->agility;
+    Character::critic += pNewEquipment->critic - pOldEquipment->critic;
+    Character::haste += pNewEquipment->haste - pOldEquipment->haste;
 }
 
 /*!

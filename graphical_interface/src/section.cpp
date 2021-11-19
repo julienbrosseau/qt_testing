@@ -12,15 +12,15 @@ Section::Section(int index, QString name) : QWidget()
     Section::indexSection = index;
 
     /* Initialize the button */
-    Section::button = new QPushButton(name, this);
+    Section::pExitButton = new QPushButton(name, this);
     
     /* Set up the button */
-    Section::button->setToolTip("Close the window");
-    Section::button->setFont(QFont("Courier", 12));
-    Section::button->setCursor(Qt::PointingHandCursor);
-    Section::button->move(60,50); /* TODO: Replace magic numbers */
+    Section::pExitButton->setToolTip("Switch section");
+    Section::pExitButton->setFont(QFont("Courier", 12));
+    Section::pExitButton->setCursor(Qt::PointingHandCursor);
+    Section::pExitButton->move(60,50); /* TODO: Replace magic numbers */
 
-    QObject::connect(button, SIGNAL(clicked()),
+    QObject::connect(Section::pExitButton, SIGNAL(clicked()),
                      this, SLOT(SlotSwitchSection()));
 }
 
@@ -29,7 +29,7 @@ Section::Section(int index, QString name) : QWidget()
  */
 Section::~Section(void)
 {
-    delete Section::button;
+    delete Section::pExitButton;
 }
 
 /*!
@@ -38,7 +38,7 @@ Section::~Section(void)
  */
 void Section::SlotSwitchSection(void)
 {   
-    int nextIndex = Section::indexSection % 4;
+    int nextIndex = (Section::indexSection + 1) % 6; /* TODO: Replace magic numbers */
 
     emit Section::SignalSwitchSection(nextIndex);
 }

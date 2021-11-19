@@ -18,6 +18,7 @@ public:
 
     /* Public functions */
     void DisplayCharacterInterface(Character *pCharacter);
+    void DisplayCharacterCaracteristic(Character *pCharacter);
 
 public slots:
     void SlotExitInterface(void);
@@ -40,7 +41,20 @@ private:
     QLabel *pLabelLegs;
     QLabel *pLabelWeapon;
     QLabel *pLabelDisplay;
-    QLabel *pLabelCarac;
+
+    /* Elements of the character caracteristics */
+    QFrame *pFrameCarac;
+    QLabel *pLabelGeneral;
+    QLabel *pLabelHealth;
+    QLabel *pLabelMana;
+    QLabel *pLabelDamage;
+    QLabel *pLabelDefense;
+    QLabel *pLabelAttributes;
+    QLabel *pLabelStrength;
+    QLabel *pLabelIntellect;
+    QLabel *pLabelAgility;
+    QLabel *pLabelCritic;
+    QLabel *pLabelHaste;
 
     /* Elements of the inventory frame */
     QFrame *pFrameInventory;
@@ -49,6 +63,7 @@ private:
     /* Layouts */
     QHBoxLayout *pLayoutNavigation;
     QGridLayout *pLayoutCharacter;
+    QVBoxLayout *pLayoutCarac;
     QHBoxLayout *pLayoutInventory;
     QGridLayout *pLayoutMain;
 };

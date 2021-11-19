@@ -21,8 +21,11 @@ signals:
 
 private:
     /* Private variables */
-    QPushButton *button;
     int indexSection;
+
+public:
+    /* Public variables */
+    QPushButton *pExitButton;
 };
 
 #endif /* SECTION_H */

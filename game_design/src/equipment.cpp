@@ -18,7 +18,7 @@ Equipment::Equipment(equipmentSlot_t xSlot)
     case ARMOR_CHEST:
         Equipment::name = "Chemise décousue";
         Equipment::damage = 0;
-        Equipment::defense = 3;
+        Equipment::defense = 2;
         break;
 
     case ARMOR_LEGS:

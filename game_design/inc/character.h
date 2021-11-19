@@ -34,18 +34,27 @@ public:
     /* Public variable */
     Inventory *pInventory;
 
-    /* Public variables */
     Equipment *pArmorHead;
     Equipment *pArmorChest;
     Equipment *pArmorLegs;
     Equipment *pWeapon;
 
-private:
-    /* Private variables */
-    int maxHeart;
     int nbHeart;
     int nbMana;
 
+    int damage;
+    int defense;
+    int strength;
+    int intellect;
+    int agility;
+    int critic;
+    int haste;
+
+private:
+    /* Private variables */
+    int maxHeart;
+
+    void UpdateCarac(Equipment *pOldEquipment, Equipment *pNewEquipment);
 };
 
 #endif /* CHARACTER_H */

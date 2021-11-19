@@ -34,9 +34,13 @@ int main(int argc, char *argv[])
     leather.Print();
 
     /* Add items to the inventory */
-    characterOne.inventory->AddConsumable(healthPotion.name, healthPotion.regenHealth,
+    characterOne.pInventory->AddConsumable(healthPotion.name, healthPotion.regenHealth,
                                           healthPotion.regenMana);
-    characterOne.inventory->AddTradeskill(leather.name);
- 
+    characterOne.pInventory->AddTradeskill(leather.name);
+
+    /* Diplay character one */
+    window.pCharacterInterface->DisplayCharacterInterface(&characterOne);
+    window.pCharacterInterface->DisplayCharacterCaracteristic(&characterOne);
+
     return app.exec();
 }
