@@ -176,7 +176,7 @@ void CharacterInterface::DisplayCharacterCaracteristic(Character *pCharacter)
  */
 void CharacterInterface::SlotExitInterface(void)
 {   
-    int nextIndex = 0; //CharacterInterface::widgetIndex + 1;
+    int nextIndex = 1; //CharacterInterface::widgetIndex + 1;
     
     emit CharacterInterface::SignalExitInterface(nextIndex);
 }

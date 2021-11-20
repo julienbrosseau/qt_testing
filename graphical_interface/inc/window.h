@@ -7,6 +7,7 @@
 
 #include "section.h"
 #include "start_menu.h"
+#include "level_selection.h"
 #include "character_interface.h"
 
 class Window : public QMainWindow
@@ -31,6 +32,7 @@ private:
 public:
     /* Public variables */
     StartMenu *pStartMenu;
+    LevelSelection *pLevelSelection;
     Section *section1;
     Section *section2;
     Section *section3;

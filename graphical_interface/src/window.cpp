@@ -21,14 +21,16 @@ Window::Window(void) : QMainWindow()
     Window::stack = new QStackedWidget(this);
     /* Initialize sections */
     Window::pStartMenu = new StartMenu(0);
-    Window::section1 = new Section(1, "Section 1");
-    Window::section2 = new Section(2, "Section 2");
-    Window::section3 = new Section(3, "Section 3");
-    Window::section4 = new Section(4, "Section 4");
-    Window::pCharacterInterface = new CharacterInterface(5);
+    Window::pLevelSelection = new LevelSelection(1);
+    Window::section1 = new Section(2, "Section 1");
+    Window::section2 = new Section(3, "Section 2");
+    Window::section3 = new Section(4, "Section 3");
+    Window::section4 = new Section(5, "Section 4");
+    Window::pCharacterInterface = new CharacterInterface(6);
 
     /* Add sections to the stack */
     Window::stack->addWidget(Window::pStartMenu);
+    Window::stack->addWidget(Window::pLevelSelection);
     Window::stack->addWidget(Window::section1);
     Window::stack->addWidget(Window::section2);
     Window::stack->addWidget(Window::section3);
@@ -41,6 +43,10 @@ Window::Window(void) : QMainWindow()
 
     /* Connect each section to switch the current dispalyed section */
     QObject::connect(Window::pStartMenu, SIGNAL(SignalEnterInGame(int)),
+                     this, SLOT(SlotDisplaySection(int)));
+    QObject::connect(Window::pLevelSelection, SIGNAL(SignalExitInterface(int)),
+                     this, SLOT(SlotDisplaySection(int)));
+    QObject::connect(Window::pLevelSelection, SIGNAL(SignalInventory(int)),
                      this, SLOT(SlotDisplaySection(int)));
     QObject::connect(Window::section1, SIGNAL(SignalSwitchSection(int)),
                      this, SLOT(SlotDisplaySection(int)));
@@ -66,6 +72,8 @@ Window::Window(void) : QMainWindow()
  */
 Window::~Window(void)
 {
+    delete Window::pStartMenu;
+    delete Window::pLevelSelection;
     delete Window::section1;
     delete Window::section2;
     delete Window::section3;
