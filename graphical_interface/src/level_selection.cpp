@@ -2,12 +2,15 @@
 
 #define BTN_MSG_EXIT_GAME   "Retour accueil"
 #define HELP_MSG_EXIT_GAME  "Cliquer pour revenir au menu d'accueil"
-#define INDEX_EXIT_GAME     0
 
 #define BTN_MSG_INVENTORY   "Inventaire"
 #define HELP_MSG_INVENTORY  "Cliquer pour afficher l'inventaire"
-#define INDEX_INVENTORY     6
 
+/*!
+ * \brief           Construct a new Level Selection:: Level Selection object
+ * 
+ * \param[in]       index: Index of the widget
+ */
 LevelSelection::LevelSelection(int index) : QWidget()
 {
     /* Set the widget number */
@@ -48,6 +51,9 @@ LevelSelection::LevelSelection(int index) : QWidget()
     this->setLayout(LevelSelection::pLayoutMain);
 }
 
+/*!
+ * \brief           Destroy the Level Selection:: Level Selection object
+ */
 LevelSelection::~LevelSelection()
 {   
     /* Delete elements of level selection frame */
@@ -64,11 +70,19 @@ LevelSelection::~LevelSelection()
     delete LevelSelection::pLayoutMain;
 }
 
+/*!
+ * \brief           Slot function which ask to switch the current widget to another one.
+ *                  Connected with the signal 'SignalExitInterface'.
+ */
 void LevelSelection::SlotExitInterface(void)
 {
     emit LevelSelection::SignalExitInterface(START_MENU);
 }
 
+/*!
+ * \brief           Slot function which ask to switch the current widget to another one.
+ *                  Connected with the signal 'SignalInventory'.
+ */
 void LevelSelection::SlotInventory(void)
 {
     emit LevelSelection::SignalInventory(CHARAC_INTERFACE);

@@ -3,6 +3,11 @@
 #define BTN_MSG_ENTER_IN_GAME   "Entrer en jeu"
 #define HELP_MSG_ENTER_IN_GAME  "Cliquer pour commencer le jeu"
 
+/*!
+ * \brief           Construct a new Start Menu:: Start Menu object
+ * 
+ * \param[in]       index: Index of the widget
+ */
 StartMenu::StartMenu(int index) : QWidget()
 {
     /* Set the widget number */
@@ -38,6 +43,9 @@ StartMenu::StartMenu(int index) : QWidget()
     this->setLayout(StartMenu::pLayoutMain);
 }
 
+/*!
+ * \brief           Destroy the Start Menu:: Start Menu object
+ */
 StartMenu::~StartMenu()
 {
     /* Delete elements of navigation frame */
@@ -57,6 +65,10 @@ StartMenu::~StartMenu()
     delete StartMenu::pLayoutMain;
 }
 
+/*!
+ * \brief           Slot function which ask to switch the current widget to another one.
+ *                  Connected with the signal 'SignalEnterInGame'.
+ */
 void StartMenu::SlotEnterInGame(void)
 {
     emit StartMenu::SignalEnterInGame(LEVEL_SELEC);
