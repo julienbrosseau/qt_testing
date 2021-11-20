@@ -1,8 +1,7 @@
 #include "start_menu.h"
 
-#define BTN_MSG_ENTER_IN_GAME   "Enter en jeu"
+#define BTN_MSG_ENTER_IN_GAME   "Entrer en jeu"
 #define HELP_MSG_ENTER_IN_GAME  "Cliquer pour commencer le jeu"
-#define INDEX_ENTER_IN_GAME     1
 
 StartMenu::StartMenu(int index) : QWidget()
 {
@@ -60,5 +59,5 @@ StartMenu::~StartMenu()
 
 void StartMenu::SlotEnterInGame(void)
 {
-    emit StartMenu::SignalEnterInGame(INDEX_ENTER_IN_GAME);
+    emit StartMenu::SignalEnterInGame(LEVEL_SELEC);
 }

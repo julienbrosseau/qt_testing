@@ -66,10 +66,10 @@ LevelSelection::~LevelSelection()
 
 void LevelSelection::SlotExitInterface(void)
 {
-    emit LevelSelection::SignalExitInterface(INDEX_EXIT_GAME);
+    emit LevelSelection::SignalExitInterface(START_MENU);
 }
 
 void LevelSelection::SlotInventory(void)
 {
-    emit LevelSelection::SignalInventory(INDEX_INVENTORY);
+    emit LevelSelection::SignalInventory(CHARAC_INTERFACE);
 }

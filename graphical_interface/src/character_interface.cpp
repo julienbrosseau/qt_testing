@@ -9,13 +9,6 @@ CharacterInterface::CharacterInterface(int index) : QWidget()
 {
     /* Set the widget number */
     CharacterInterface::widgetIndex = index;
-    
-    /* Initialize elements of the navigation frame */
-    CharacterInterface::pFrameNavigation = new QFrame;
-    CharacterInterface::pButtonExit = new QPushButton("Exit", this);
-    CMN_SetUpButton(CharacterInterface::pButtonExit, "Exit frame");
-    QObject::connect(CharacterInterface::pButtonExit, SIGNAL(clicked()),
-                     this, SLOT(SlotExitInterface()));
 
     /* Initialize elements of the character frame */
     CharacterInterface::pFrameCharacter = new QFrame;
@@ -27,12 +20,12 @@ CharacterInterface::CharacterInterface(int index) : QWidget()
 
     /* Initialize elements of the character caracteristics */
     CharacterInterface::pFrameCarac = new QFrame;
-    CharacterInterface::pLabelGeneral = new QLabel("General:");
+    CharacterInterface::pLabelGeneral = new QLabel("Général");
     CharacterInterface::pLabelHealth = new QLabel("Health: N/A");
     CharacterInterface::pLabelMana = new QLabel("Mana: N/A");
     CharacterInterface::pLabelDamage = new QLabel("Damage: N/A");
     CharacterInterface::pLabelDefense = new QLabel("Defense: N/A");
-    CharacterInterface::pLabelAttributes = new QLabel("Attributes:");
+    CharacterInterface::pLabelAttributes = new QLabel("Attribut");
     CharacterInterface::pLabelStrength = new QLabel("Strength: N/A");
     CharacterInterface::pLabelIntellect = new QLabel("Intellect: N/A");
     CharacterInterface::pLabelAgility = new QLabel("Agility: N/A");
@@ -43,17 +36,19 @@ CharacterInterface::CharacterInterface(int index) : QWidget()
     CharacterInterface::pFrameInventory = new QFrame;
     CharacterInterface::pLabelInventory = new QLabel("Inventory");
 
+    /* Initialize elements of the navigation frame */
+    CharacterInterface::pFrameNavigation = new QFrame;
+    CharacterInterface::pButtonExit = new QPushButton("Retour", this);
+    CMN_SetUpButton(CharacterInterface::pButtonExit, "Cliquer pour retourner au choix des niveaux");
+    QObject::connect(CharacterInterface::pButtonExit, SIGNAL(clicked()),
+                     this, SLOT(SlotExitInterface()));
+
     /* Initialize layouts */
-    CharacterInterface::pLayoutNavigation = new QHBoxLayout;
     CharacterInterface::pLayoutCharacter = new QGridLayout;
     CharacterInterface::pLayoutCarac = new QVBoxLayout;
     CharacterInterface::pLayoutInventory = new QHBoxLayout;
+    CharacterInterface::pLayoutNavigation = new QHBoxLayout;
     CharacterInterface::pLayoutMain = new QGridLayout;
-
-    /* Set up navigation frame */
-    CharacterInterface::pLayoutNavigation->addWidget(CharacterInterface::pButtonExit, 1,
-                                                     Qt::AlignLeft);
-    CharacterInterface::pFrameNavigation->setLayout(CharacterInterface::pLayoutNavigation);
 
     /* Set up character frame */
     CharacterInterface::pLayoutCharacter->addWidget(CharacterInterface::pLabelHead, 0, 0, 1, 1);
@@ -64,12 +59,12 @@ CharacterInterface::CharacterInterface(int index) : QWidget()
     CharacterInterface::pFrameCharacter->setLayout(CharacterInterface::pLayoutCharacter);
 
     /* Set up caracteristics frame */
-    CharacterInterface::pLayoutCarac->addWidget(CharacterInterface::pLabelGeneral, 1, Qt::AlignLeft);
+    CharacterInterface::pLayoutCarac->addWidget(CharacterInterface::pLabelGeneral, 1, Qt::AlignCenter);
     CharacterInterface::pLayoutCarac->addWidget(CharacterInterface::pLabelHealth, 1, Qt::AlignLeft);
     CharacterInterface::pLayoutCarac->addWidget(CharacterInterface::pLabelMana, 1, Qt::AlignLeft);
     CharacterInterface::pLayoutCarac->addWidget(CharacterInterface::pLabelDamage, 1, Qt::AlignLeft);
     CharacterInterface::pLayoutCarac->addWidget(CharacterInterface::pLabelDefense, 1, Qt::AlignLeft);
-    CharacterInterface::pLayoutCarac->addWidget(CharacterInterface::pLabelAttributes, 1, Qt::AlignLeft);
+    CharacterInterface::pLayoutCarac->addWidget(CharacterInterface::pLabelAttributes, 1, Qt::AlignCenter);
     CharacterInterface::pLayoutCarac->addWidget(CharacterInterface::pLabelStrength, 1, Qt::AlignLeft);
     CharacterInterface::pLayoutCarac->addWidget(CharacterInterface::pLabelIntellect, 1, Qt::AlignLeft);
     CharacterInterface::pLayoutCarac->addWidget(CharacterInterface::pLabelAgility, 1, Qt::AlignLeft);
@@ -81,11 +76,15 @@ CharacterInterface::CharacterInterface(int index) : QWidget()
     CharacterInterface::pLayoutInventory->addWidget(CharacterInterface::pLabelInventory);
     CharacterInterface::pFrameInventory->setLayout(CharacterInterface::pLayoutInventory);
 
+    /* Set up navigation frame */
+    CharacterInterface::pLayoutNavigation->addWidget(CharacterInterface::pButtonExit, 1, Qt::AlignLeft);
+    CharacterInterface::pFrameNavigation->setLayout(CharacterInterface::pLayoutNavigation);
+
     /* Set up the whole */
-    CharacterInterface::pLayoutMain->addWidget(CharacterInterface::pFrameNavigation, 0, 0, 1, 8);
-    CharacterInterface::pLayoutMain->addWidget(CharacterInterface::pFrameCharacter, 1, 0, 14, 3);
-    CharacterInterface::pLayoutMain->addWidget(CharacterInterface::pFrameCarac, 1, 3, 14, 1);
-    CharacterInterface::pLayoutMain->addWidget(CharacterInterface::pFrameInventory, 1, 4, 14, 4);
+    CharacterInterface::pLayoutMain->addWidget(CharacterInterface::pFrameCharacter, 0, 0, 14, 3);
+    CharacterInterface::pLayoutMain->addWidget(CharacterInterface::pFrameCarac, 0, 3, 14, 1);
+    CharacterInterface::pLayoutMain->addWidget(CharacterInterface::pFrameInventory, 0, 4, 14, 4);
+    CharacterInterface::pLayoutMain->addWidget(CharacterInterface::pFrameNavigation, 15, 0, 1, 8);
     this->setLayout(CharacterInterface::pLayoutMain);
 }
 
@@ -157,17 +156,17 @@ void CharacterInterface::DisplayCharacterInterface(Character *pCharacter)
 void CharacterInterface::DisplayCharacterCaracteristic(Character *pCharacter)
 {
     /* General */
-    CharacterInterface::pLabelHealth->setText("Health: " + QString::number(pCharacter->nbHeart));
+    CharacterInterface::pLabelHealth->setText("Vie: " + QString::number(pCharacter->nbHeart));
     CharacterInterface::pLabelMana->setText("Mana: " + QString::number(pCharacter->nbMana));
-    CharacterInterface::pLabelDamage->setText("Damage: " + QString::number(pCharacter->damage));
-    CharacterInterface::pLabelDefense->setText("Defense: " + QString::number(pCharacter->defense));
+    CharacterInterface::pLabelDamage->setText("Dégât: " + QString::number(pCharacter->damage));
+    CharacterInterface::pLabelDefense->setText("Défense: " + QString::number(pCharacter->defense));
     
     /* Attributes */
-    CharacterInterface::pLabelStrength->setText("Strength: " + QString::number(pCharacter->strength));
-    CharacterInterface::pLabelIntellect->setText("Intellect: " + QString::number(pCharacter->intellect));
-    CharacterInterface::pLabelAgility->setText("Agility: " + QString::number(pCharacter->agility));
-    CharacterInterface::pLabelCritic->setText("Critical Strike: " + QString::number(pCharacter->critic));
-    CharacterInterface::pLabelHaste->setText("Haste: " + QString::number(pCharacter->haste));
+    CharacterInterface::pLabelStrength->setText("Force: " + QString::number(pCharacter->strength));
+    CharacterInterface::pLabelIntellect->setText("Intelligence: " + QString::number(pCharacter->intellect));
+    CharacterInterface::pLabelAgility->setText("Agilité: " + QString::number(pCharacter->agility));
+    CharacterInterface::pLabelCritic->setText("Score Critique: " + QString::number(pCharacter->critic));
+    CharacterInterface::pLabelHaste->setText("Hâte: " + QString::number(pCharacter->haste));
 }
 
 /*!
@@ -175,8 +174,6 @@ void CharacterInterface::DisplayCharacterCaracteristic(Character *pCharacter)
  *                  Connected with the signal 'SignalExitInterface'.
  */
 void CharacterInterface::SlotExitInterface(void)
-{   
-    int nextIndex = 1; //CharacterInterface::widgetIndex + 1;
-    
-    emit CharacterInterface::SignalExitInterface(nextIndex);
+{
+    emit CharacterInterface::SignalExitInterface(LEVEL_SELEC);
 }

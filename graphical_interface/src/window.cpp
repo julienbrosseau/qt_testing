@@ -20,13 +20,13 @@ Window::Window(void) : QMainWindow()
     /* Initialize the stack */
     Window::stack = new QStackedWidget(this);
     /* Initialize sections */
-    Window::pStartMenu = new StartMenu(0);
-    Window::pLevelSelection = new LevelSelection(1);
+    Window::pStartMenu = new StartMenu(START_MENU);
+    Window::pLevelSelection = new LevelSelection(LEVEL_SELEC);
     Window::section1 = new Section(2, "Section 1");
     Window::section2 = new Section(3, "Section 2");
     Window::section3 = new Section(4, "Section 3");
     Window::section4 = new Section(5, "Section 4");
-    Window::pCharacterInterface = new CharacterInterface(6);
+    Window::pCharacterInterface = new CharacterInterface(CHARAC_INTERFACE);
 
     /* Add sections to the stack */
     Window::stack->addWidget(Window::pStartMenu);

@@ -5,6 +5,7 @@
 #include <tuple>
 #include <QtWidgets>
 
+#include "common.h"
 #include "section.h"
 #include "start_menu.h"
 #include "level_selection.h"
