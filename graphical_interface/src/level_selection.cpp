@@ -6,6 +6,8 @@
 #define BTN_MSG_INVENTORY   "Inventaire"
 #define HELP_MSG_INVENTORY  "Cliquer pour afficher l'inventaire"
 
+#define LABEL_WIDTH         500
+
 /*!
  * \brief           Construct a new Level Selection:: Level Selection object
  * 
@@ -13,12 +15,27 @@
  */
 LevelSelection::LevelSelection(int index) : QWidget()
 {
+    int i;
+
     /* Set the widget number */
     LevelSelection::widgetIndex = index;
 
     /* Initialize elements of the level selection */
+    LevelSelection::pScrollBar = new QScrollArea;
+    LevelSelection::pScrollBar->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    LevelSelection::pScrollBar->setWidgetResizable(true);
     LevelSelection::pFrameLevelSelection = new QFrame;
-    LevelSelection::pLabelLevel1 = new QLabel("Level 1");
+    for (i = 0; i < NB_LEVELS; i++) {
+        LevelSelection::aLevelSelection[i].pButton = new QPushButton("Niveau " + QString::number(i));
+        LevelSelection::aLevelSelection[i].indexSwitchedWidget = i;
+        LevelSelection::aLevelSelection[i].SlotSwitchWidgetFxn = &LevelSelection::SlotSwitchWidget;
+
+
+        CMN_SetUpButton(LevelSelection::aLevelSelection[i].pButton, "Cliquer pour entrer dans le niveau");
+        LevelSelection::aLevelSelection[i].pButton->setFixedWidth(LABEL_WIDTH);
+        QObject::connect(LevelSelection::aLevelSelection[i].pButton, SIGNAL(clicked()),
+                         this, SLOT(SlotLevelSelection(int)));
+    }
 
     /* Initialize elements of the navigation frame */
     LevelSelection::pFrameNavigation = new QFrame;
@@ -37,8 +54,12 @@ LevelSelection::LevelSelection(int index) : QWidget()
     LevelSelection::pLayoutMain = new QGridLayout;
 
     /* Set up level selection frame */
-    LevelSelection::pLayoutLevelSelection->addWidget(LevelSelection::pLabelLevel1, 1, Qt::AlignCenter);
+    for (i = 0; i < NB_LEVELS; i++) {
+        LevelSelection::pLayoutLevelSelection->addWidget(
+            LevelSelection::paLevelSelection[i], 1, Qt::AlignCenter);
+    }
     LevelSelection::pFrameLevelSelection->setLayout(LevelSelection::pLayoutLevelSelection);
+    LevelSelection::pScrollBar->setWidget(LevelSelection::pFrameLevelSelection);
 
     /* Set up navigation frame */
     LevelSelection::pLayoutNavigation->addWidget(LevelSelection::pButtonExit, 1, Qt::AlignLeft);
@@ -46,7 +67,7 @@ LevelSelection::LevelSelection(int index) : QWidget()
     LevelSelection::pFrameNavigation->setLayout(LevelSelection::pLayoutNavigation);
 
     /* Set up the whole */
-    LevelSelection::pLayoutMain->addWidget(LevelSelection::pFrameLevelSelection, 0, 0, 14, 1);
+    LevelSelection::pLayoutMain->addWidget(LevelSelection::pScrollBar, 0, 0, 14, 1);
     LevelSelection::pLayoutMain->addWidget(LevelSelection::pFrameNavigation, 15, 0, 1, 1);
     this->setLayout(LevelSelection::pLayoutMain);
 }
@@ -56,8 +77,12 @@ LevelSelection::LevelSelection(int index) : QWidget()
  */
 LevelSelection::~LevelSelection()
 {   
+    int i;
+
     /* Delete elements of level selection frame */
-    delete LevelSelection::pLabelLevel1;
+    for (i = 0; i < NB_LEVELS; i++) {
+        delete LevelSelection::paLevelSelection[i];
+    }
 
     /* Delete elements of naviguation frame */
     delete LevelSelection::pButtonExit;
@@ -67,6 +92,7 @@ LevelSelection::~LevelSelection()
     delete LevelSelection::pFrameLevelSelection;
     delete LevelSelection::pFrameNavigation;
 
+    delete LevelSelection::pScrollBar;
     delete LevelSelection::pLayoutMain;
 }
 
@@ -86,4 +112,9 @@ void LevelSelection::SlotExitInterface(void)
 void LevelSelection::SlotInventory(void)
 {
     emit LevelSelection::SignalInventory(CHARAC_INTERFACE);
+}
+
+void LevelSelection::SlotLevelSelection(int index)
+{
+    emit LevelSelection::SignalLevelSelection(index);
 }
