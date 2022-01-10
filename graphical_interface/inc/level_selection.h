@@ -8,12 +8,7 @@
 
 #define NB_LEVELS 5
 
-typedef struct button
-{
-    QPushButton *pButton;
-    int indexSwitchedWidget;
-    void (*SlotSwitchWidgetFxn)(int);
-} button_t;
+typedef void (*switchWidgetCallback_t)(int index);
 
 class LevelSelection : public QWidget
 {
@@ -29,7 +24,7 @@ public:
 public slots:
     void SlotExitInterface(void);
     void SlotInventory(void);
-    void SlotSwitchWidget(int index);
+    void SlotSwitchWidget(void);
 
 signals:
     void SignalExitInterface(int index);
@@ -38,12 +33,20 @@ signals:
 
 private:
     /* Private variables */
+    typedef struct button
+    {
+        QPushButton *pButton;
+        int indexSwitchedWidget;
+        void (*SlotLevelSelectionFxn)(int);
+    } button_t;
+
     int widgetIndex;
 
     /* Elements of interface frame */
     QScrollArea *pScrollBar;
     QFrame *pFrameLevelSelection;
-    button_t aLevelSelection[NB_LEVELS];
+    button_t *paLevelSelection[NB_LEVELS];
+    QPushButton *pTestButton;
 
     /* Elements of the nagivation frame */
     QFrame *pFrameNavigation;

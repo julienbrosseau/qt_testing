@@ -6,9 +6,9 @@
 
 typedef enum indexWidget
 {
-    START_MENU       = 0U,
-    LEVEL_SELEC      = 1U,
-    CHARAC_INTERFACE = 6U
+    START_MENU       = 0,
+    LEVEL_SELEC      = 1,
+    CHARAC_INTERFACE = 6
 } indexWidget_t;
 
 void CMN_SetUpButton(QPushButton *pButton, QString help);

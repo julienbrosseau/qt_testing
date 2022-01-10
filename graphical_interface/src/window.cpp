@@ -44,7 +44,7 @@ Window::Window(void) : QMainWindow()
     /* Connect each section to switch the current dispalyed section */
     QObject::connect(Window::pStartMenu, SIGNAL(SignalEnterInGame(int)),
                      this, SLOT(SlotDisplaySection(int)));
-    QObject::connect(Window::pLevelSelection, SIGNAL(SignalExitInterface(int)),
+    QObject::connect(Window::pLevelSelection, SIGNAL(SignalSwitchWidget(int)),
                      this, SLOT(SlotDisplaySection(int)));
     QObject::connect(Window::pLevelSelection, SIGNAL(SignalInventory(int)),
                      this, SLOT(SlotDisplaySection(int)));
