@@ -25,27 +25,16 @@ LevelSelection::LevelSelection(int index) : QWidget()
     LevelSelection::pScrollBar->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     LevelSelection::pScrollBar->setWidgetResizable(true);
     
-    LevelSelection::pFrameLevelSelection = new QFrame;
+    LevelSelection::pFrameLevel = new QFrame;
 
-    LevelSelection::pTestButton = new QPushButton("Niveau " + QString::number(0));
-
-    CMN_SetUpButton(LevelSelection::pTestButton, "Cliquer pour entrer dans le niveau");
-
-    QObject::connect(LevelSelection::pTestButton, SIGNAL(clicked()),
-                     this, SLOT(SlotSwitchWidget()));
-
-    // for (i = 0; i < NB_LEVELS; i++) {
-    //     LevelSelection::paLevelSelection[i]->pButton = new QPushButton("Niveau " + QString::number(i));
-    //     LevelSelection::paLevelSelection[i]->indexSwitchedWidget = i;
-    //     // LevelSelection::paLevelSelection[i]->SlotLevelSelectionFxn = &SlotLevelSelection;
-
-
-    //     CMN_SetUpButton(LevelSelection::paLevelSelection[i]->pButton, "Cliquer pour entrer dans le niveau");
-    //     LevelSelection::paLevelSelection[i]->pButton->setFixedWidth(LABEL_WIDTH);
-        
-    //     QObject::connect(LevelSelection::paLevelSelection[i]->pButton, SIGNAL(clicked()),
-    //                      this, SLOT(SlotLevelSelection()));
-    // }
+    for (i = 0; i < NB_LEVELS; i++) {
+        /* Initialize new button */
+        LevelSelection::paButtonLevel[i] = new QPushButton("Niveau " + QString::number(i + 1));
+        /* Set up new button */
+        CMN_SetUpButton(LevelSelection::paButtonLevel[i], "Cliquer pour entre dans le niveau");
+        /* Connect new button */
+        QObject::connect(LevelSelection::paButtonLevel[i], SIGNAL(clicked()), this, SLOT(SlotSwitchWidget()));
+    }
 
     /* Initialize elements of the navigation frame */
     LevelSelection::pFrameNavigation = new QFrame;
@@ -61,18 +50,16 @@ LevelSelection::LevelSelection(int index) : QWidget()
                      this, SLOT(SlotSwitchWidget()));
 
     /* Initialize layouts */
-    LevelSelection::pLayoutLevelSelection = new QHBoxLayout;
+    LevelSelection::pLayoutLevel = new QHBoxLayout;
     LevelSelection::pLayoutNavigation = new QHBoxLayout;
     LevelSelection::pLayoutMain = new QGridLayout;
 
     /* Set up level selection frame */
-    // for (i = 0; i < NB_LEVELS; i++) {
-    //     LevelSelection::pLayoutLevelSelection->addWidget(
-    //         LevelSelection::paLevelSelection[i]->pButton, 1, Qt::AlignCenter);
-    // }
-    LevelSelection::pLayoutLevelSelection->addWidget(LevelSelection::pTestButton, 1, Qt::AlignCenter);
-    LevelSelection::pFrameLevelSelection->setLayout(LevelSelection::pLayoutLevelSelection);
-    LevelSelection::pScrollBar->setWidget(LevelSelection::pFrameLevelSelection);
+    for (i = 0; i < NB_LEVELS; i++) {
+        LevelSelection::pLayoutLevel->addWidget(LevelSelection::paButtonLevel[i], 1, Qt::AlignCenter);
+    }
+    LevelSelection::pFrameLevel->setLayout(LevelSelection::pLayoutLevel);
+    LevelSelection::pScrollBar->setWidget(LevelSelection::pFrameLevel);
 
     /* Set up navigation frame */
     LevelSelection::pLayoutNavigation->addWidget(LevelSelection::pButtonExit, 1, Qt::AlignLeft);
@@ -90,24 +77,23 @@ LevelSelection::LevelSelection(int index) : QWidget()
  */
 LevelSelection::~LevelSelection()
 {   
-    // int i;
+    int i;
 
     /* Delete elements of level selection frame */
-    // for (i = 0; i < NB_LEVELS; i++) {
-    //     delete LevelSelection::paLevelSelection[i];
-    // }
-    delete LevelSelection::pTestButton;
+    for (i = 0; i < NB_LEVELS; i++) {
+        delete LevelSelection::paButtonLevel[i];
+    }
 
     /* Delete elements of naviguation frame */
     delete LevelSelection::pButtonExit;
     delete LevelSelection::pButtonInventory;
 
     /* Delete layouts */
-    delete LevelSelection::pLayoutLevelSelection;
+    delete LevelSelection::pLayoutLevel;
     delete LevelSelection::pLayoutNavigation;
 
     /* Delete frames */
-    delete LevelSelection::pFrameLevelSelection;
+    delete LevelSelection::pFrameLevel;
     delete LevelSelection::pFrameNavigation;
 
     delete LevelSelection::pScrollBar;
@@ -137,20 +123,22 @@ void LevelSelection::SlotInventory(void)
  */
 void LevelSelection::SlotSwitchWidget(void)
 {
+    int i;
     int index = 0;
+    /* Get button signal sender */
     auto sender = this->sender();
 
-    if (LevelSelection::pButtonExit == sender) {
-        std::cout << "Go on 'Start Menu'" << std::endl;
-        index = START_MENU;
-    } else if (LevelSelection::pButtonInventory == sender) {
-        std::cout << "Go on 'Interface'" << std::endl;
-        index = CHARAC_INTERFACE;
-    } else if (LevelSelection::pTestButton == sender) {
-        std::cout << "Go on 'Test'" << std::endl;
-        index = 2;
-    } else {
-        std::cout << "Error, no matching button" << std::endl;
+    for (i = 0; i < NB_LEVELS; i++) {
+        if (LevelSelection::pButtonExit == sender) {
+            std::cout << "Go on 'Start Menu'" << std::endl;
+            index = START_MENU;
+        } else if (LevelSelection::pButtonInventory == sender) {
+            std::cout << "Go on 'Interface'" << std::endl;
+            index = CHARAC_INTERFACE;
+        } else if (LevelSelection::paButtonLevel[i] == sender) {
+            std::cout << "Go on 'Level " << i + 1 << "'" << std::endl;
+            index = i + 2;
+        }
     }
 
     emit LevelSelection::SignalSwitchWidget(index);

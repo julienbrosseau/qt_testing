@@ -37,16 +37,14 @@ private:
     {
         QPushButton *pButton;
         int indexSwitchedWidget;
-        void (*SlotLevelSelectionFxn)(int);
     } button_t;
 
     int widgetIndex;
 
     /* Elements of interface frame */
     QScrollArea *pScrollBar;
-    QFrame *pFrameLevelSelection;
-    button_t *paLevelSelection[NB_LEVELS];
-    QPushButton *pTestButton;
+    QFrame *pFrameLevel;
+    QPushButton *paButtonLevel[NB_LEVELS];
 
     /* Elements of the nagivation frame */
     QFrame *pFrameNavigation;
@@ -54,7 +52,7 @@ private:
     QPushButton *pButtonInventory;
 
     /* Layouts */
-    QHBoxLayout *pLayoutLevelSelection;
+    QHBoxLayout *pLayoutLevel;
     QHBoxLayout *pLayoutNavigation;
     QGridLayout *pLayoutMain;
 };
