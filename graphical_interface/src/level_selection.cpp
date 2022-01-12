@@ -8,6 +8,9 @@
 
 #define LABEL_WIDTH         500
 
+#define LAYOUT_LEVEL_SPACE  150
+#define LAYOUT_LEVEL_MARGIN 100
+
 /*!
  * \brief           Construct a new Level Selection:: Level Selection object
  * 
@@ -53,6 +56,10 @@ LevelSelection::LevelSelection(int index) : QWidget()
     LevelSelection::pLayoutLevel = new QHBoxLayout;
     LevelSelection::pLayoutNavigation = new QHBoxLayout;
     LevelSelection::pLayoutMain = new QGridLayout;
+
+    /* Set up layouts */
+    LevelSelection::pLayoutLevel->setSpacing(LAYOUT_LEVEL_SPACE);
+    LevelSelection::pLayoutLevel->setMargin(LAYOUT_LEVEL_MARGIN);
 
     /* Set up level selection frame */
     for (i = 0; i < NB_LEVELS; i++) {
