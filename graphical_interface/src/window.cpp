@@ -22,20 +22,22 @@ Window::Window(void) : QMainWindow()
     /* Initialize sections */
     Window::pStartMenu = new StartMenu(START_MENU);
     Window::pLevelSelection = new LevelSelection(LEVEL_SELEC);
-    Window::section1 = new Section(2, "Section 1");
-    Window::section2 = new Section(3, "Section 2");
-    Window::section3 = new Section(4, "Section 3");
-    Window::section4 = new Section(5, "Section 4");
     Window::pCharacterInterface = new CharacterInterface(CHARAC_INTERFACE);
+    Window::section1 = new Section(3, "Section 1");
+    Window::section2 = new Section(4, "Section 2");
+    Window::section3 = new Section(5, "Section 3");
+    Window::section4 = new Section(6, "Section 4");
+    Window::section5 = new Section(7, "Section 5");
 
     /* Add sections to the stack */
     Window::stack->addWidget(Window::pStartMenu);
     Window::stack->addWidget(Window::pLevelSelection);
+    Window::stack->addWidget(Window::pCharacterInterface);
     Window::stack->addWidget(Window::section1);
     Window::stack->addWidget(Window::section2);
     Window::stack->addWidget(Window::section3);
     Window::stack->addWidget(Window::section4);
-    Window::stack->addWidget(Window::pCharacterInterface);
+    Window::stack->addWidget(Window::section5);
 
     /* Set up the section to display */
     this->setCentralWidget(Window::stack);

@@ -144,7 +144,7 @@ void LevelSelection::SlotSwitchWidget(void)
             index = CHARAC_INTERFACE;
         } else if (LevelSelection::paButtonLevel[i] == sender) {
             std::cout << "Go on 'Level " << i + 1 << "'" << std::endl;
-            index = i + 2;
+            index = i + 3;
         }
     }
 

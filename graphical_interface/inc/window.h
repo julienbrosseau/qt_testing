@@ -38,6 +38,7 @@ public:
     Section *section2;
     Section *section3;
     Section *section4;
+    Section *section5;
     CharacterInterface *pCharacterInterface;
 };
 
