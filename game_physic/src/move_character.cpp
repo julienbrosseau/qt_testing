@@ -12,7 +12,7 @@
  * \brief           Construct a new Move Character:: Move Character object
  * 
  */
-MoveCharacter::MoveCharacter() : QWidget()
+MoveCharacter::MoveCharacter(QWidget *parent = Q_NULLPTR) : QWidget(parent)
 {
     MoveCharacter::pointX = 200;
     MoveCharacter::pointY = 100;
@@ -33,28 +33,6 @@ MoveCharacter::~MoveCharacter()
 }
 
 /*!
- * \brief           Painting the character to the focused window
- * 
- * \param[in]       event:
- */
-void MoveCharacter::paintEvent(QPaintEvent *event) {
-    Q_UNUSED(event);
-    /* Initialize and define the size of the ellipse */
-    QRectF rectangle(MoveCharacter::pointX, MoveCharacter::pointY, MoveCharacter::ellipseWidth,
-                     MoveCharacter::ellipseHeight);
-    /* Initialize and define the border the ellipse */
-    QPen pen_ellipse(Qt::black);
-    pen_ellipse.setWidth(MoveCharacter::ellipsePen);
-    /* Initilize and draw the ellipse */
-    QPainter painter;
-    painter.begin(this);
-    painter.setPen(pen_ellipse);
-    painter.setBrush(Qt::cyan);
-    painter.drawEllipse(rectangle);
-    painter.end();
-}
-
-/*!
  * \brief           Get key press events to move character
  * 
  * \param[in]       keyEvent: key event (directional arrows)
@@ -65,25 +43,25 @@ void MoveCharacter::keyPressEvent(QKeyEvent *keyEvent)
     case Qt::Key_Down:
         MoveCharacter::pointY += MoveCharacter::step;
         qDebug() << "Down";
-        QWidget::update();
+        this->parentWidget()->update();
         break;
 
     case Qt::Key_Left:
         MoveCharacter::pointX -= MoveCharacter::step;
         qDebug() << "Left";
-        QWidget::update();
+        this->parentWidget()->update();
         break;
 
     case Qt::Key_Right:
         MoveCharacter::pointX += MoveCharacter::step;
         qDebug() << "Right";
-        QWidget::update();
+        this->parentWidget()->update();
         break;
 
     case Qt::Key_Up:
         MoveCharacter::pointY -= MoveCharacter::step;
         qDebug() << "Up";
-        QWidget::update();
+        this->parentWidget()->update();
         break;
 
     default:

@@ -10,14 +10,13 @@ class MoveCharacter : public QWidget
     Q_OBJECT
 
 public:
-    MoveCharacter();
+    MoveCharacter(QWidget *parent);
     ~MoveCharacter();
 
 protected:
     void keyPressEvent(QKeyEvent *keyEvent);
-    void paintEvent(QPaintEvent *event);
 
-private:
+public:
     int pointX;
     int pointY;
     int step;
