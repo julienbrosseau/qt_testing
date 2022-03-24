@@ -42,6 +42,7 @@ find_package(Qt5 COMPONENTS Gui Core Widgets REQUIRED)
 include_directories(
     core/inc
     game_design/inc
+    game_physic/inc
     graphical_interface/inc
 )
 
@@ -49,6 +50,7 @@ include_directories(
 file(GLOB PROJECT_INCLUDE
     "core/inc/*.h"
     "game_design/inc/*.h"
+    "game_physic/inc/*.h"
     "graphical_interface/inc/*.h"
 )
 
@@ -59,6 +61,7 @@ file(GLOB PROJECT_INCLUDE
 file(GLOB PROJECT_EXECS
     "core/src/*.cpp"
     "game_design/src/*.cpp"
+    "game_physic/src/*.cpp"
     "graphical_interface/src/*.cpp"
 )
 
