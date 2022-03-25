@@ -58,6 +58,8 @@ Window::Window(void) : QMainWindow()
                      this, SLOT(SlotDisplaySection(int)));
     QObject::connect(Window::section4, SIGNAL(SignalSwitchSection(int)),
                      this, SLOT(SlotDisplaySection(int)));
+    QObject::connect(Window::section5, SIGNAL(SignalSwitchSection(int)),
+                     this, SLOT(SlotDisplaySection(int)));
     QObject::connect(Window::pCharacterInterface, SIGNAL(SignalExitInterface(int)),
                      this, SLOT(SlotDisplaySection(int)));
     
@@ -80,6 +82,7 @@ Window::~Window(void)
     delete Window::section2;
     delete Window::section3;
     delete Window::section4;
+    delete Window::section5;
     delete Window::pCharacterInterface;
 }
 
