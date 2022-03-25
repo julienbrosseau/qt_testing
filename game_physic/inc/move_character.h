@@ -1,9 +1,12 @@
 #ifndef MOVE_CHARACTER_H
 #define MOVE_CHARACTER_H
 
-#include <QObject>
-#include <QWidget>
+#include <QtWidgets>
 #include <QKeyEvent>
+#include <iostream>
+#include <QDebug>
+
+#include "common.h"
 
 class MoveCharacter : public QWidget
 {
