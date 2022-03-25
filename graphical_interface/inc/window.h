@@ -24,9 +24,6 @@ public slots:
     void SlotDisplaySection(int index);
 
 private:
-    /* Private function */
-    std::tuple<int, int> GetSizeOfDesktop(void);
-
     /* Private variables */
     QStackedWidget *stack;
 
