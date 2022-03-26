@@ -19,7 +19,7 @@ void CMN_SetUpButton(QPushButton *pButton, QString help)
  * \param[out]      width: Width of the host desktop
  * \param[out]      height: Height of the host desktop          
  */
-std::tuple<int, int> GetSizeOfDesktop(void)
+std::tuple<int, int> CMN_GetSizeOfDesktop(void)
 {
     QRect desktop = QApplication::desktop()->screenGeometry();
 

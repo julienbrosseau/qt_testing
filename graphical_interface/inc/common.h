@@ -22,6 +22,6 @@ typedef enum indexWidget
 } indexWidget_t;
 
 void CMN_SetUpButton(QPushButton *pButton, QString help);
-std::tuple<int, int> GetSizeOfDesktop(void);
+std::tuple<int, int> CMN_GetSizeOfDesktop(void);
 
 #endif /* COMMON_H */

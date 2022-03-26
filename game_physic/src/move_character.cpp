@@ -16,7 +16,7 @@ MoveCharacter::MoveCharacter(QWidget *parent = Q_NULLPTR) : QWidget(parent)
     int height;
 
     /* Get the size of the host desktop */
-    std::tie(width, height) = GetSizeOfDesktop();
+    std::tie(width, height) = CMN_GetSizeOfDesktop();
 
     MoveCharacter::pointX = START_POINT_X;
     MoveCharacter::pointY = height - HEIGHT_DELTA - CHARAC_HEIGHT - START_POINT_Y;

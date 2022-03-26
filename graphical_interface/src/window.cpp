@@ -9,7 +9,7 @@ Window::Window(void) : QMainWindow()
     int height;
 
     /* Get the size of the host desktop */
-    std::tie(width, height) = GetSizeOfDesktop();
+    std::tie(width, height) = CMN_GetSizeOfDesktop();
 
     /* Generate the window */
     this->setFixedSize(width - WIDTH_DELTA, height - HEIGHT_DELTA);
