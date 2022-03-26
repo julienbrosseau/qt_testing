@@ -47,15 +47,15 @@ Window::Window(void) : QMainWindow()
                      this, SLOT(SlotDisplaySection(int)));
     QObject::connect(Window::pLevelSelection, SIGNAL(SignalInventory(int)),
                      this, SLOT(SlotDisplaySection(int)));
-    QObject::connect(Window::section1, SIGNAL(SignalSwitchSection(int)),
+    QObject::connect(Window::section1, SIGNAL(SignalExitLevel(int)),
                      this, SLOT(SlotDisplaySection(int)));
-    QObject::connect(Window::section2, SIGNAL(SignalSwitchSection(int)),
+    QObject::connect(Window::section2, SIGNAL(SignalExitLevel(int)),
                      this, SLOT(SlotDisplaySection(int)));
-    QObject::connect(Window::section3, SIGNAL(SignalSwitchSection(int)),
+    QObject::connect(Window::section3, SIGNAL(SignalExitLevel(int)),
                      this, SLOT(SlotDisplaySection(int)));
-    QObject::connect(Window::section4, SIGNAL(SignalSwitchSection(int)),
+    QObject::connect(Window::section4, SIGNAL(SignalExitLevel(int)),
                      this, SLOT(SlotDisplaySection(int)));
-    QObject::connect(Window::section5, SIGNAL(SignalSwitchSection(int)),
+    QObject::connect(Window::section5, SIGNAL(SignalExitLevel(int)),
                      this, SLOT(SlotDisplaySection(int)));
     QObject::connect(Window::pCharacterInterface, SIGNAL(SignalExitInterface(int)),
                      this, SLOT(SlotDisplaySection(int)));

@@ -1,9 +1,9 @@
-/*!
+/*!*************************************************************************************************
  * \file            move_character.cpp
  * \author          Julien Brosseau (https://github.com/julienbrosseau)
  * \brief           File based on https://www.badprog.com/c-qt-framework-moving-a-shape-with-arrow-keys 
- */
- 
+ **************************************************************************************************/
+
 #include "move_character.h"
 
 /*!
@@ -21,9 +21,6 @@ MoveCharacter::MoveCharacter(QWidget *parent = Q_NULLPTR) : QWidget(parent)
     MoveCharacter::pointX = START_POINT_X;
     MoveCharacter::pointY = height - HEIGHT_DELTA - CHARAC_HEIGHT - START_POINT_Y;
     MoveCharacter::step = 5;
-    MoveCharacter::ellipseWidth = CHARAC_WIDTH;
-    MoveCharacter::ellipseHeight = CHARAC_HEIGHT;
-    MoveCharacter::ellipsePen = 1;
     QWidget::setFocusPolicy(Qt::StrongFocus);
 }
 

@@ -23,9 +23,6 @@ public:
     int pointX;
     int pointY;
     int step;
-    int ellipseWidth;
-    int ellipseHeight;
-    int ellipsePen;
 };
 
 #endif /* MOVE_CHARACTER_H */
