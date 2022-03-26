@@ -3,6 +3,8 @@
 #define BTN_MSG_EXIT_LEVEL   "Quitter le niveau"
 #define HELP_MSG_EXIT_LEVEL  "Cliquer pour quitter le niveau"
 
+#define NB_ENEMIES 2
+
 /*!
  * \brief           Constructor of the class "Section"
  *
@@ -94,10 +96,13 @@ void Section::paintEvent(QPaintEvent *event)
                       Section::characWidth, Section::characHeight);
     
     /* Initialize and define the size of the ellipse */
-    QRectF enemyRect_1(Section::pShape->pointX, Section::pShape->pointY, Section::characWidth, 
-                       Section::characHeight);
-    QRectF enemyRect_2(Section::pShape->pointX + 50, Section::pShape->pointY, Section::characWidth, 
-                       Section::characHeight);
+    QRectF aEnemiesRect[NB_ENEMIES];
+
+    for (int i = 0; i < NB_ENEMIES; i++) {
+        QRectF enemyRect(Section::pShape->pointX + (i * 50), Section::pShape->pointY, 
+                         Section::characWidth, Section::characHeight);
+        aEnemiesRect[i] = enemyRect;
+    }
 
     /* Initialize and define the border the ellipse */
     QPen penEllipse(Qt::black);
@@ -112,8 +117,9 @@ void Section::paintEvent(QPaintEvent *event)
     painter.drawEllipse(characRect);
     /* Draw enemies */
     painter.setBrush(Qt::red);
-    painter.drawEllipse(enemyRect_1);
-    painter.drawEllipse(enemyRect_2);
+    for (int i = 0; i < NB_ENEMIES; i++) {
+        painter.drawEllipse(aEnemiesRect[i]);
+    }
     /* Ending the drawing session */
     painter.end();
 }

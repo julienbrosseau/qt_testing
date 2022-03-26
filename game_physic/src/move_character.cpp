@@ -9,8 +9,9 @@
 /*!
  * \brief           Construct a new Move Character:: Move Character object
  * 
+ * \param[in]       parent: QWidget parent of the class
  */
-MoveCharacter::MoveCharacter(QWidget *parent = Q_NULLPTR) : QWidget(parent)
+MoveCharacter::MoveCharacter(QWidget *parent) : QWidget(parent)
 {
     int width;
     int height;
