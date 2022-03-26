@@ -14,6 +14,15 @@ Section::Section(int index, QString name) : QWidget()
     /* Set the number of the section */
     Section::indexSection = index;
 
+    int width;
+    int height;
+
+    /* Get the size of the host desktop */
+    std::tie(width, height) = CMN_GetSizeOfDesktop();
+
+    Section::characPointX = ((width - WIDTH_DELTA) / 2) - (CHARAC_WIDTH / 2);
+    Section::characPointY = height - HEIGHT_DELTA - CHARAC_HEIGHT - START_POINT_Y;;
+
     Section::characWidth = CHARAC_WIDTH;
     Section::characHeight = CHARAC_HEIGHT;
     Section::characPen = 1;
@@ -81,19 +90,31 @@ void Section::paintEvent(QPaintEvent *event)
     Q_UNUSED(event);
 
     /* Initialize and define the size of the ellipse */
-    QRectF rectangle(Section::pShape->pointX, Section::pShape->pointY, 
-                     Section::characWidth, Section::characHeight);
+    QRectF characRect(Section::characPointX, Section::characPointY, 
+                      Section::characWidth, Section::characHeight);
+    
+    /* Initialize and define the size of the ellipse */
+    QRectF enemyRect_1(Section::pShape->pointX, Section::pShape->pointY, Section::characWidth, 
+                       Section::characHeight);
+    QRectF enemyRect_2(Section::pShape->pointX + 50, Section::pShape->pointY, Section::characWidth, 
+                       Section::characHeight);
 
     /* Initialize and define the border the ellipse */
     QPen penEllipse(Qt::black);
     penEllipse.setWidth(Section::characPen);
 
-    /* Initilize and draw the ellipse */
+    /* Initilize the drawing session */
     QPainter painter;
     painter.begin(this);
     painter.setPen(penEllipse);
-    painter.setBrush(Qt::cyan);
-    painter.drawEllipse(rectangle);
+    /* Daw the character */
+    painter.setBrush(Qt::blue);
+    painter.drawEllipse(characRect);
+    /* Draw enemies */
+    painter.setBrush(Qt::red);
+    painter.drawEllipse(enemyRect_1);
+    painter.drawEllipse(enemyRect_2);
+    /* Ending the drawing session */
     painter.end();
 }
 

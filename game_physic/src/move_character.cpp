@@ -18,7 +18,7 @@ MoveCharacter::MoveCharacter(QWidget *parent = Q_NULLPTR) : QWidget(parent)
     /* Get the size of the host desktop */
     std::tie(width, height) = CMN_GetSizeOfDesktop();
 
-    MoveCharacter::pointX = START_POINT_X;
+    MoveCharacter::pointX = width - WIDTH_DELTA;
     MoveCharacter::pointY = height - HEIGHT_DELTA - CHARAC_HEIGHT - START_POINT_Y;
     MoveCharacter::step = 5;
     QWidget::setFocusPolicy(Qt::StrongFocus);
@@ -48,13 +48,13 @@ void MoveCharacter::keyPressEvent(QKeyEvent *keyEvent)
     //     break;
 
     case Qt::Key_Left:
-        MoveCharacter::pointX -= MoveCharacter::step;
+        MoveCharacter::pointX += MoveCharacter::step;
         // qDebug() << "Left";
         this->parentWidget()->update();
         break;
 
     case Qt::Key_Right:
-        MoveCharacter::pointX += MoveCharacter::step;
+        MoveCharacter::pointX -= MoveCharacter::step;
         // qDebug() << "Right";
         this->parentWidget()->update();
         break;

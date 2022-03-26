@@ -38,6 +38,9 @@ private:
 
     /* Private variables */
     int indexSection;
+
+    int characPointX;
+    int characPointY;
     int characWidth;
     int characHeight;
     int characPen;
