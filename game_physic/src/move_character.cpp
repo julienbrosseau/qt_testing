@@ -82,38 +82,25 @@ bool MoveCharacter::CheckCollision(int numberOfEnnemies)
 void MoveCharacter::keyPressEvent(QKeyEvent *keyEvent)
 {
     switch (keyEvent->key()) {
-    // case Qt::Key_Down:
-    //     MoveCharacter::pointY += MoveCharacter::step;
-    //     qDebug() << "Down";
-    //     this->parentWidget()->update();
-    //     break;
-
+    /* Case of left key pressed */
     case Qt::Key_Left:
         MoveCharacter::pointX += MoveCharacter::step;
         // qDebug() << "Left";
         this->parentWidget()->update();
-        // std::cout << "Ca bouge" << std::endl;
         if (true == MoveCharacter::CheckCollision(NB_ENEMIES)) {
             std::cout << "Ca touche" << std::endl;
         }
         break;
-
+    /* Case of right key pressed */
     case Qt::Key_Right:
         MoveCharacter::pointX -= MoveCharacter::step;
         // qDebug() << "Right";
         this->parentWidget()->update();
-        // std::cout << "Ca bouge" << std::endl;
         if (true == MoveCharacter::CheckCollision(NB_ENEMIES)) {
             std::cout << "Ca touche" << std::endl;
         }
         break;
-
-    // case Qt::Key_Up:
-    //     MoveCharacter::pointY -= MoveCharacter::step;
-    //     qDebug() << "Up";
-    //     this->parentWidget()->update();
-    //     break;
-
+    /* Default case */
     default:
         break;
     }
