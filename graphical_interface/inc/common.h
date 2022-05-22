@@ -14,6 +14,8 @@
 #define START_POINT_X 100
 #define START_POINT_Y 100
 
+#define NB_ENEMIES 2
+
 typedef enum indexWidget
 {
     START_MENU = 0,

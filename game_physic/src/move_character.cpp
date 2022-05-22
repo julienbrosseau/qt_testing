@@ -35,6 +35,46 @@ MoveCharacter::~MoveCharacter()
 }
 
 /*!
+ * \brief           Check if there is a collision between the character and enemies
+ * 
+ * \retval          true: There is a collision
+ * \retval          false: There is not a collision
+ */
+bool MoveCharacter::CheckCollision(int numberOfEnnemies)
+{
+    bool isCollision = false;
+
+    int width;
+    int height;
+
+    /* Get the size of the host desktop */
+    std::tie(width, height) = CMN_GetSizeOfDesktop();
+
+    /* Define collision points */
+    int collisionBefore = ((width - WIDTH_DELTA) / 2) - (CHARAC_WIDTH / 2);
+    int collisionAfter = ((width - WIDTH_DELTA) / 2) + (CHARAC_WIDTH / 2);
+
+    /* Check if there is a collision */
+    int leftCollision = MoveCharacter::pointX;
+    int rightCollision = MoveCharacter::pointX + CHARAC_WIDTH;
+
+    for (int i = 0; i < numberOfEnnemies; i++) {
+        /* Check the left collision of an ennemy */
+        if ((collisionBefore < leftCollision + (i * 50)) && 
+                (collisionAfter > leftCollision + (i * 50))) {
+            isCollision = true;
+        }
+        /* Check the right collision with an ennemy */
+        if ((collisionBefore < rightCollision + (i * 50)) && 
+                (collisionAfter > rightCollision + (i * 50))) {
+            isCollision = true;
+        }
+    }
+
+    return isCollision;
+}
+
+/*!
  * \brief           Get key press events to move character
  * 
  * \param[in]       keyEvent: key event (directional arrows)
@@ -52,12 +92,20 @@ void MoveCharacter::keyPressEvent(QKeyEvent *keyEvent)
         MoveCharacter::pointX += MoveCharacter::step;
         // qDebug() << "Left";
         this->parentWidget()->update();
+        // std::cout << "Ca bouge" << std::endl;
+        if (true == MoveCharacter::CheckCollision(NB_ENEMIES)) {
+            std::cout << "Ca touche" << std::endl;
+        }
         break;
 
     case Qt::Key_Right:
         MoveCharacter::pointX -= MoveCharacter::step;
         // qDebug() << "Right";
         this->parentWidget()->update();
+        // std::cout << "Ca bouge" << std::endl;
+        if (true == MoveCharacter::CheckCollision(NB_ENEMIES)) {
+            std::cout << "Ca touche" << std::endl;
+        }
         break;
 
     // case Qt::Key_Up:

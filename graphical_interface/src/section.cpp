@@ -3,8 +3,6 @@
 #define BTN_MSG_EXIT_LEVEL   "Quitter le niveau"
 #define HELP_MSG_EXIT_LEVEL  "Cliquer pour quitter le niveau"
 
-#define NB_ENEMIES 2
-
 /*!
  * \brief           Constructor of the class "Section"
  *
@@ -23,7 +21,7 @@ Section::Section(int index, QString name) : QWidget()
     std::tie(width, height) = CMN_GetSizeOfDesktop();
 
     Section::characPointX = ((width - WIDTH_DELTA) / 2) - (CHARAC_WIDTH / 2);
-    Section::characPointY = height - HEIGHT_DELTA - CHARAC_HEIGHT - START_POINT_Y;;
+    Section::characPointY = height - HEIGHT_DELTA - CHARAC_HEIGHT - START_POINT_Y;
 
     Section::characWidth = CHARAC_WIDTH;
     Section::characHeight = CHARAC_HEIGHT;

@@ -16,6 +16,8 @@ public:
     MoveCharacter(QWidget *parent);
     ~MoveCharacter();
 
+    bool CheckCollision(int numberOfEnnemies);
+
 protected:
     void keyPressEvent(QKeyEvent *keyEvent);
 
