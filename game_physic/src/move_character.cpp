@@ -37,6 +37,7 @@ MoveCharacter::~MoveCharacter()
 /*!
  * \brief           Check if there is a collision between the character and enemies
  * 
+ * \param[in]       numberOfEnnemies: Number of ennemies
  * \retval          true: There is a collision
  * \retval          false: There is not a collision
  */
