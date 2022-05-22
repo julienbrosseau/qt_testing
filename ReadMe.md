@@ -10,8 +10,8 @@ I have never used it before and I will try to make something with it.
 
 ## Requirements
 
-- CMake
-- QT
+- CMake (version used for this project - 3.10.2)
+- QT (version used for this project - 5.9.5)
 
 ### Installation of QT
 
